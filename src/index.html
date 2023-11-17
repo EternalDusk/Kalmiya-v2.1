@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <title>Electron App</title>
+</head>
+<body>
+    <header id="kalmiyaTitle">KALMIYA</header>
+    
+    <div id="menuBar">
+        <button id="menu1Button" class="menuButton standout">Functional Settings</button>
+        <button id="menu2Button" class="menuButton">Performance Settings</button>
+        <button id="menu3Button" class="menuButton">Spartan Customization</button>
+    </div>
+
+    <div id="menu1" class="menu">
+        <!-- FOV Slider -->
+        <div class="settingsContainer">
+            <label id="fovSliderNumbers">FOV Slider - 78</label>
+            <input type="range" min="60" max="150" value="78" step="1" class="slider" id="fovSlider">
+        </div>
+        <!-- FPS Slider -->
+        <div class="settingsContainer">
+            <label id="fpsSliderNumbers">FOV Slider - 78</label>
+            <input type="range" min="30" max="300" value="60" step="30" class="slider" id="fpsSlider">
+        </div>
+        <!-- HUD Selection -->
+        <div class="settingsContainer">
+            <label>Selected HUD - </label>
+            <select name="huds" id="huds">
+                <optgroup label="Multiplayer">
+                    <option value="multiplayer">Multiplayer</option>
+                    <option value="none">None</option>
+                </optgroup>
+                <optgroup label="FireTeam Osiris">
+                  <option value="buck">Buck</option>
+                  <option value="locke">Locke</option>
+                  <option value="tanaka">Tanaka</option>
+                  <option value="vale">Vale</option>
+                </optgroup>
+                <optgroup label="Blue Team">
+                  <option value="masterchief">Master Chief</option>
+                  <option value="fred">Fred</option>
+                  <option value="kelly">Kelly</option>
+                  <option value="linda">Linda</option>
+                </optgroup>
+            </select>
+        </div>
+        <!-- Camera Track Selection -->
+        <div class="settingsContainer">
+            <label>Camera Track - </label>
+            <select name="cameraTrack" id="cameraTrack">
+                <optgroup label="First Person">
+                    <option value="_default">Default Camera</option>
+                  </optgroup>
+                  <optgroup label="Third Person">
+                    <option value="banshee_d_camera">Banshee Driver Camera</option>
+                    <option value="biped_assassination_camera">Biped Assassination Camera</option>
+                    <option value="biped_ground_pound_camera">Biped Ground Pound Camera</option>
+                    <option value="biped_shoulder_bash_camera">Biped Shoulder Bash Camera</option>
+                    <option value="biped_turret_camera">Biped Turret Camera</option>
+                    <option value="board_large_camera">Large Board Camera</option>
+                    <option value="board_med_camera">Medium Board Camera</option>
+                    <option value="board_small_camera">Small Board Camera</option>
+                    <option value="dropship_d_camera">Dropship Driver Camera</option>
+                    <option value="ghost_d_camera">Ghost Driver Camera</option>
+                    <option value="mantis_d_camera">Mantis Driver Camera</option>
+                    <option value="mongoose_d_camera">Mongoose Driver Camera</option>
+                    <option value="mongoose_p_camera">Mongoose Passenger Camera</option>
+                    <option value="scorpion_d_camera">Scorpion Driver Camera</option>
+                    <option value="scorpion_g_camera">Scorpion Gunner Camera</option>
+                    <option value="scorpion_infantry_seat_camera">Scorpion Infantry Seat Camera</option>
+                    <option value="shade_d_camera">Shade Driver Camera</option>
+                    <option value="wasp_d_camera">Wasp Driver Camera</option>
+                    <option value="turret_d_camera">Turret Driver Camera</option>
+                    <option value="vtol_d_camera">VTOL Driver Camera</option>
+                    <option value="warthog_d_camera">Warthog Driver Camera</option>
+                    <option value="warthog_g_camera">Warthog Gunner Camera</option>
+                    <option value="wraith_d_camera">Wraith Driver Camera</option>
+                    <option value="wraith_g_camera">Wraith Gunner Camera</option>
+                    <option value="_fixed_camera">Fixed Camera</option>
+                  </optgroup>
+            </select>
+        </div>
+        <!-- First Person Assassinations -->
+        <div class="settingsContainer">
+            <label>First Person Assassinations</label>
+            <input type="checkbox" id="fpAssassinations" name="fpAssassinations" value="fpAssassinations">
+        </div>
+        <!-- Disable ADS -->
+        <div class="settingsContainer">
+            <label>Disable ADS Weapon Overlay</label>
+            <input type="checkbox" id="disableADS" name="disableADS" value="disableADS" checked>
+        </div>
+    </div>
+
+    <div id="menu2" class="menu hidden">
+        <!-- Draw Distance Scale -->
+        <div class="settingsContainer">
+            <label id="drawDistanceScaleNumbers">Draw Distance Scale - 1.0</label>
+            <input type="range" min="0.5" max="3.0" value="1.0" step="0.1" class="slider" id="drawDistanceScaleSlider">
+        </div>
+        <!-- Object LOD Scale -->
+        <div class="settingsContainer">
+            <label id="objectLODScaleNumbers">Object LOD Scale - 1.0</label>
+            <input type="range" min="0.1" max="3.0" value="1.0" step="0.1" class="slider" id="objectLODScaleSlider">
+        </div>
+        <!-- BSP Instance Geo LOD Scale -->
+        <div class="settingsContainer">
+            <label id="bspScaleNumbers">BSP Instance Geo LOD Scale - 1.0</label>
+            <input type="range" min="0.5" max="3.0" value="1.0" step="0.1" class="slider" id="bspScaleSlider">
+        </div>
+        <!-- Effects Draw Distance Scale -->
+        <div class="settingsContainer">
+            <label id="fxDrawDistanceScaleNumbers">Effects Draw Distance Scale - 1.0</label>
+            <input type="range" min="0.5" max="3.0" value="1.0" step="0.1" class="slider" id="fxDrawDistanceScaleSlider">
+        </div>
+        <!-- Particles Draw Distance Scale -->
+        <div class="settingsContainer">
+            <label id="particleDrawDistanceScaleNumbers">Particles Draw Distance Scale - 1.0</label>
+            <input type="range" min="0.5" max="3.0" value="1.0" step="0.1" class="slider" id="particleDrawDistanceScaleSlider">
+        </div>
+        <!-- Decorators Draw Distance Scale -->
+        <div class="settingsContainer">
+            <label id="decoratorsDrawDistanceScaleNumbers">Decorators Draw Distance Scale - 1.0</label>
+            <input type="range" min="0.5" max="3.0" value="1.0" step="0.1" class="slider" id="decoratorsDrawDistanceScaleSlider">
+        </div>
+        <!-- Atmospheric Fog -->
+        <div class="settingsContainer">
+            <label>Atmospheric Fog</label>
+            <input type="checkbox" id="atmosFog" name="atmosFog" value="atmosFog" checked>
+        </div>
+        <!-- Weather Effects -->
+        <div class="settingsContainer">
+            <label>Weather Effects</label>
+            <input type="checkbox" id="weatherFX" name="weatherFX" value="weatherFX" checked>
+        </div>
+        <!-- Ragdolls -->
+        <div class="settingsContainer">
+            <label>Ragdolls</label>
+            <input type="checkbox" id="ragdolls" name="ragdolls" value="ragdolls" checked>
+        </div>
+    </div>
+
+    <div id="menu3" class="menu hidden">
+        <div id="menuBar">
+            <button id="submenu1Button" class="submenuButton standout">Spartan Appearance</button>
+            <button id="submenu2Button" class="submenuButton">Spartan ID</button>
+            <button id="submenu3Button" class="submenuButton">Weapon Skins</button>
+        </div>
+        <div id="submenu1" class="submenu">
+            <div class="horizontal">
+                <!-- Helmet -->
+                <div class="settingsContainer vertical">
+                    <label>Helmet</label>
+                    <img id="helmetImage" src="assets/img/_0d221ec2_191d_48bb_8ea5_b9afc9930b30.png" alt="Helmet Image" width="200">
+                    <select id="helmetSelect" class="customizationSelect">
+                        <option value="_0d221ec2_191d_48bb_8ea5_b9afc9930b30">Achilles</option>
+                        <option value="d3da00ae_b103_41e3_b236_c98a85fe3baa">Air Assault Disrupt</option>
+                        <option value="_1e597abf_da8c_4700_b18e_5ab93a913915">Air Assault Impact</option>
+                        <option value="c0bc3370_0989_49b1_910d_b9d6b361f4b9">Air Assault Specialist</option>
+                        <option value="_0a55d3d9_16c8_400b_a830_e65a0543a5df">Air Assault</option>
+                        <option value="b9fd1db2_2471_4c37_9dfb_b32df8d4db47">Anubis Nephthys</option>
+                        <option value="_3ba763e2_7887_4365_b6cb_5a2c7d7ba2b0">Anubis Set</option>
+                        <option value="_6923395a_2709_4e99_b69a_0e46126d9155">Anubis</option>
+                        <option value="ea65e8ca_0c15_4166_9833_eafd5a00f6f5">Argonaut Idmon</option>
+                        <option value="_583d9138_888f_4868_b523_22ff6c481082">Argonaut Nestor</option>
+                        <option value="e5d3dafb_461e_4cb3_b08f_325de7b2fdfb">Argonaut</option>
+                        <option value="b5232eeb_e91a_451a_8329_dd31a9d4b239">Argus Arestor</option>
+                        <option value="_95437bc2_ae5a_438d_a34e_c561ec3e5315">Argus</option>
+                        <option value="_050c54bd_09cf_4639_a3c8_987ca599864e">Athlon Champion</option>
+                        <option value="_31716049_4c18_4f15_be05_05cc26b2ffc4">Athlon Cynisca</option>
+                        <option value="b3d04cf4_96f3_448c_bed3_e82b8f9f594d">Athlon Iccus</option>
+                        <option value="e9afc01a_5633_4f35_8f50_a4b79f087ea8">Athlon Lycinus</option>
+                        <option value="_9479f974_a5a6_4c76_8b99_b16228f575a3">Athlon Varazdat</option>
+                        <option value="_4d911a02_fd56_4669_8a8f_ef35a743ef8d">Athlon</option>
+                        <option value="_6555f6c6_d00c_4cb6_9d84_4013170f8349">Atlas Unbound</option>
+                        <option value="_6554f3ec_2c8b_442e_8310_7e713fff61ff">Atlas Vigilant</option>
+                        <option value="_8f43ad35_b128_408e_8ee6_a5a91bb3d6ea">Atlas</option>
+                        <option value="f6113ab3_d240_4458_b3d1_6d6f46ba7a01">Aviator Ace</option>
+                        <option value="_1c80c107_593d_4c45_9671_ffbbde67585f">Aviator Csar</option>
+                        <option value="_044ade80_cacc_4a44_9b87_9c7b112c9b20">Aviator Delta</option>
+                        <option value="d3678e4f_544c_4bd1_a25c_40f93ae18a9f">Aviator</option>
+                        <option value="_29442c3f_1ff6_43b9_b787_af0dce0c1cf5">Breaker Doomsday</option>
+                        <option value="dde00b88_75be_496b_8cd9_4372fe6a9910">Breaker Hatchetman</option>
+                        <option value="cac9c862_3ccc_4e49_8cd3_e82274109d99">Breaker</option>
+                        <option value="_61ce50e0_b737_4398_9a1f_da0953ee677e">Buccaneer Illyri</option>
+                        <option value="c8252611_ee91_47e4_a9ab_46627e629ac6">Buccaneer Tyr</option>
+                        <option value="_282c12d3_a9c3_4f22_bb82_a063a0ccfa58">Buccaneer</option>
+                        <option value="_5c91ed09_5bed_447b_9433_0d509d686b3f">CIO</option>
+                        <option value="_227efbcd_9768_4e11_a0cd_4fc00e01fa65">CQB</option>
+                        <option value="fa97d436_ef34_4cf3_b3ad_d3cf8af3053f">Centurion Ironside</option>
+                        <option value="_4fba9a18_679e_41ea_a26b_d79b5825ced9">Centurion</option>
+                        <option value="_543137dd_4b71_4144_95fa_43d6a6fa7ef4">Challenger</option>
+                        <option value="_63b45e18_2550_4013_b83f_0520132f5df7">Cinder</option>
+                        <option value="_888a1de8_cc88_4e73_80a4_bfc3495dfe53">Commando Arius</option>
+                        <option value="_6deb77d4_4b06_453b_8f22_fa2497269045">Commando Matrix</option>
+                        <option value="_90dbed08_243b_43e1_bb0d_64f525a8868b">Commando Verde</option>
+                        <option value="_006644c3_70ad_4a88_9350_b12e04e320ff">Commando</option>
+                        <option value="_5517a438_875e_4960_bda1_504925a59283">Copperhead Fangs</option>
+                        <option value="_049f30c1_e2b5_471d_8807_98ac982ebf73">Copperhead</option>
+                        <option value="_3745469e_1ea3_4e92_9aa6_570f861d24c0">Cyclops</option>
+                        <option value="ab93a831_82c0_451d_a6c7_26b9931a420c">Cypher Copiale</option>
+                        <option value="_15f35b5c_5915_40a7_9f2c_913fa8f6f6f2">Cypher Voynich</option>
+                        <option value="_5e7f8f63_e130_436d_9ad9_c5d5eb45c556">Cypher</option>
+                        <option value="a0f9cc7b_d828_4f98_9ac2_1c6d1e6870ae">Deadeye</option>
+                        <option value="_2a9ee07e_9b68_40b4_aad1_3aa7aaf870c1">Decimator</option>
+                        <option value="ee12367d_06d5_448b_90ff_1eff9cddb5e6">Defender Castle</option>
+                        <option value="_093d7423_21ad_43bd_94fa_8198fbd93e70">Defender Fortress</option>
+                        <option value="e910a5a6_9dea_45aa_b196_f110ed668910">Defender Redoubt</option>
+                        <option value="_106d48d8_5a72_4400_8940_d1767ee11cf1">Defender</option>
+                        <option value="_2967105f_dcd8_445b_902b_22ffb488bb4b">Dynast Cincindel</option>
+                        <option value="_23f21704_93b2_41c2_abce_8ecd8e43d71d">Dynast Lilioc</option>
+                        <option value="d7d262c0_b674_4a30_9151_0e4cf68bc464">Dynast</option>
+                        <option value="_50897492_4b51_4710_bced_f521cf6dfa36">EOD</option>
+                        <option value="a7d6214b_9375_4809_94b5_96c9836db986">EVA GEN1</option>
+                        <option value="_0103a8f4_9ef3_4832_8b74_845330b80f1b">EVA Hadfield</option>
+                        <option value="c5adb4d5_9f79_4cf1_bd67_88572e66c4bc">EVA Leonov</option>
+                        <option value="_7512bf3e_2cc4_4a42_8123_ef45e5eeaa06">EVA Solovyev</option>
+                        <option value="_9b0a2d91_9557_4af1_934e_adae597685b9">EVA Zhigang</option>
+                        <option value="_7bdc71c8_77a5_497f_b1c6_4c1d09716c1c">EVA</option>
+                        <option value="_50bb8b3f_1cac_4180_9b96_8a05fe146eb2">Enforcer Strongarm</option>
+                        <option value="_28e94434_54e3_44ff_a6d2_eaaebc50a29c">Enforcer</option>
+                        <option value="bc39ea4f_cd9d_4af6_82ee_af9fd8f25f95">Engineer</option>
+                        <option value="_494fd2c9_22ca_4bcc_a7b2_7acf04a9008b">FOTUS Chillrose</option>
+                        <option value="_1881d514_2ca0_46c0_a748_d2345079410d">FOTUS Synchronize</option>
+                        <option value="_3dbc02bd_ce04_49a8_aa9a_09241136aa9e">FOTUS</option>
+                        <option value="_68c20130_192e_4a7b_92af_05a86f3cafaa">Fenrir Unchained</option>
+                        <option value="aca27875_852e_45ab_9445_df903a468716">Fenrir Woebringer</option>
+                        <option value="_11268d19_8600_4cdc_8e05_f9c363a10fe5">Fenrir Wolffriend</option>
+                        <option value="_6cc5dc03_0b88_4e95_8940_152f0606b062">Fenrir</option>
+                        <option value="e1697be7_70a3_475a_af8a_c3e2aeb71e31">Foehammer Echo</option>
+                        <option value="_71286978_bfc0_4400_8285_58057bb42cd2">Foehammer Victor</option>
+                        <option value="_1fbc538c_642d_4ee5_af68_3f64142b6998">Foehammer</option>
+                        <option value="a5f296e3_caef_4973_81bf_0f05d1468544">Freebooter Privateer</option>
+                        <option value="d5810c87_b85f_4dec_b883_7b8897d20951">Freebooter</option>
+                        <option value="aade5c6c_d8ef_4842_835d_befac716942f">Goblin Dokkaebi</option>
+                        <option value="f75d69b4_66ec_4844_87e1_1427a7fdf212">Goblin Erlking</option>
+                        <option value="_06444aa8_9b22_4292_b58c_b6e6bb1dfa24">Goblin</option>
+                        <option value="_7f374ea2_da83_489c_8627_b4692b88b133">Gungnir Dvalin</option>
+                        <option value="_7ec7c8ec_55a6_4a94_bcae_c266d7a52d3b">Gungnir</option>
+                        <option value="f8809a17_25d7_4168_ac90_a1c444bc5316">Helioskrill Bloodgorger</option>
+                        <option value="f2fc18ef_8dd8_4b40_b736_25d2e6f60d70">Helioskrill Warbound</option>
+                        <option value="_8432b28d_25d7_484f_bae8_d336c03f4099">Helioskrill</option>
+                        <option value="a7672474_98fc_43b0_b413_361db7600257">Hellcat Marauder</option>
+                        <option value="d6a41dc0_772a_4070_b93a_bb0d3b65bddd">Hellcat Onslaught</option>
+                        <option value="_750405bd_a11e_4fcf_9d7d_ba3b151185d5">Hellcat</option>
+                        <option value="ba433fd1_f607_40e0_a8a0_364f8033e956">Helljumper Feet First</option>
+                        <option value="_19e6f163_8d26_4a8c_bdb0_2f179f7911b0">Helljumper</option>
+                        <option value="a8643723_cf4a_417d_a583_ea7add69c621">Hermes Dolios</option>
+                        <option value="_0e39e012_360d_421f_b943_487462227733">Hermes</option>
+                        <option value="_3dad442f_d855_4485_bb40_2bcddd23e621">Hunter</option>
+                        <option value="_5d67970a_d362_4a08_9916_67283bf541a4">Icarus</option>
+                        <option value="f381f779_2309_4d22_95e5_93da0d9057d8">Indomitable ErÅ‘d</option>
+                        <option value="_261c1360_3ab1_4a8e_b15b_606e112a5e45">Indomitable</option>
+                        <option value="_6fd798a9_745a_4a51_bbde_e0d25e570c20">Infiltrator Saboteur</option>
+                        <option value="_433dd105_270a_43e9_9c0b_7fae5f6c058a">Infiltrator</option>
+                        <option value="_0455b3a9_287d_4ca7_ab03_1577864c6f76">Interceptor Cutter</option>
+                        <option value="b5ca46af_0360_4409_9273_316bfc664823">Interceptor Imperator</option>
+                        <option value="_0847433d_ed2a_4576_aa21_083606b7155a">Interceptor Rictus</option>
+                        <option value="_3963e01e_bfd9_40eb_8ed7_16dd36d7b753">Interceptor</option>
+                        <option value="a2342954_6bc6_4d43_b558_a3abb73d26d3">Intruder Trespasser</option>
+                        <option value="_16c4c949_ccb8_4d1b_9a6e_83ad17f8eebb">Intruder</option>
+                        <option value="c0d2c020_6c8c_46fa_9e4c_430fcfcfa789">Jumpmaster Dispatcher</option>
+                        <option value="_561a8d8d_8b05_4539_bd89_9ce64a6dbe01">Jumpmaster Ripcord</option>
+                        <option value="_60d4ed79_edf5_4f85_ae4b_7d3f8665b5c9">Jumpmaster Sky Soldier</option>
+                        <option value="dd85e577_c8f4_48d1_8c64_b0ee21f0db88">Jumpmaster</option>
+                        <option value="_008038d6_a282_4d4a_9597_d8ae9b1fac8f">Legionnaire Alaris</option>
+                        <option value="eaef28f0_b5bc_46ea_a9b8_17e165def7c1">Legionnaire Optio</option>
+                        <option value="_1cdb1834_aa4c_4b4f_9c24_a6eb89745d75">Legionnaire</option>
+                        <option value="_88896dbc_87ed_485f_b39f_e7c136cdeb1e">Locus Edge</option>
+                        <option value="_04ad3777_b3cf_4d24_b344_c0b28c04a9d4">Locus</option>
+                        <option value="_8ed28a53_a339_4844_81e5_ba9e0759abd2">Mako Chthonic</option>
+                        <option value="_1dd9862f_cec5_4ed0_81c7_38b1c3743969">Mako Darkwater</option>
+                        <option value="bf3a644b_fb25_4d75_b773_198e34381eb7">Mako</option>
+                        <option value="de5bc805_50d3_4ecd_a36d_b722214faf01">Marauder Keres</option>
+                        <option value="b2b63a66_32ae_48fe_b4a2_e512cf2e07aa">Marauder Kratos</option>
+                        <option value="_3594f9a8_8415_4743_8a61_61fdb9c9b166">Marauder</option>
+                        <option value="_176ab800_9f07_4bdb_8604_580501e51cd6">Mark IV GEN1 Arcadia</option>
+                        <option value="c77fdd40_0cee_4e50_bb36_56e0960ad2c4">Mark IV GEN1</option>
+                        <option value="e213e2b7_444e_490f_bcd4_90d43d22781a">Mark V Alpha Reflex</option>
+                        <option value="d610150d_96c8_424b_9ab1_fd5b7ffde08e">Mark V Alpha</option>
+                        <option value="_53a3a6a9_0b08_4b7c_a37b_e8495ecd1667">Mark V Delta</option>
+                        <option value="d5b3823b_6151_4dc9_8ef4_f826fa433009">Mark VI GEN1 Scarred</option>
+                        <option value="_96dae1fc_9a8d_4b22_83d7_e456832a1875">Mark VI GEN1</option>
+                        <option value="ee98ae77_5955_4a81_9422_99cc20edc765">Mark VI Primus</option>
+                        <option value="_3ed5631b_caa6_4cb1_b9ab_2cd99331d7c5">Mark VI Regent</option>
+                        <option value="_805bea5a_2b84_4fa7_aef7_8cb5734d4a98">Mark VI Satrap</option>
+                        <option value="_213b079a_997d_4851_b5df_fe19e52dcaec">Mark VI</option>
+                        <option value="_59edf82a_6910_40cb_abc2_56b01939bdfc">Maverick Jester</option>
+                        <option value="d14a5026_0ca3_4069_91dc_50edc2cc23d9">Maverick</option>
+                        <option value="_840c4c70_003b_475d_b2b4_780eec6ce199">Military Police</option>
+                        <option value="f7de8db8_0c48_4b21_849d_d14e99f46cf0">Nightfall</option>
+                        <option value="_49aba880_280b_45ab_9930_3b1b9e80d587">Noble Honor</option>
+                        <option value="_2c1cb668_05a6_4edf_92f5_bf0d5befebed">Noble Valor</option>
+                        <option value="ceeda9ba_37b0_44e4_a29c_993c1eb57718">Noble</option>
+                        <option value="ef6c4491_9b09_469d_b653_06dd514c46fe">Nomad Unchained</option>
+                        <option value="_3acee43d_275f_4cea_93d6_cac70d1a2c76">Nomad Wanderlust</option>
+                        <option value="a3e07c91_e97e_4682_b74d_5188210cd3f0">Nomad</option>
+                        <option value="f0d1124d_3534_457e_9f54_04d348ee5887">Olive</option>
+                        <option value="e82201bb_9f7a_421f_9b58_82b092965a24">Operator GEN1</option>
+                        <option value="c7dfa4d7_5544_46d0_a738_fa1a283b5e28">Operator</option>
+                        <option value="_769f0c1a_cb42_4022_a275_72563536be07">Orbital Aphelion</option>
+                        <option value="_14a8ed0c_06a7_4624_a34f_d9fdbcd18656">Orbital Equinox</option>
+                        <option value="_9e24d1a2_d333_4191_a23a_ad73e128a678">Orbital Perihelion</option>
+                        <option value="df3215de_08fe_4fea_a3c5_2d19f0e687a6">Orbital</option>
+                        <option value="_150927a1_2e35_4293_afa8_557856842a81">Pathfinder Trailbreaker</option>
+                        <option value="d7fd25ff_d638_4d82_9a1a_eac9ee486f30">Pathfinder</option>
+                        <option value="d86486b7_ee9b_41f8_b973_03339eaee4a1">Pilot</option>
+                        <option value="bb6855c2_83f2_4438_a53c_9ef44fdee8d1">Pioneer</option>
+                        <option value="_53901c2a_f3be_48ec_8de2_44e38780e0bb">Protector Stalwart</option>
+                        <option value="_962ea89a_4179_4521_b169_73a6beffa622">Protector</option>
+                        <option value="_7dc211f2_210b_4470_9ad2_5c4320e022f9">Raider</option>
+                        <option value="_2009d3aa_b0f2_4033_8ffc_8cdf44fde79d">Raijin Sprite</option>
+                        <option value="_480465ec_6221_4e97_af01_be27b694f8a1">Raijin Stormstrike</option>
+                        <option value="_9dbfe919_86a1_48be_af42_02e2564d2ee4">Raijin</option>
+                        <option value="_9ba60a6b_8cff_455c_bece_358a9a91913e">Ranger</option>
+                        <option value="c4b2bede_b97e_454d_942e_395605c5921e">Reaper Grim</option>
+                        <option value="a6c40295_f06b_4595_b2c6_d8cd6662926d">Reaper Mortician</option>
+                        <option value="b0b53428_59ab_4cda_ad48_2fb0e671a2bf">Reaper</option>
+                        <option value="_7ec5471e_f898_43e4_8912_0b247f2ce70f">Recluse Laeta</option>
+                        <option value="be948996_b62d_476e_a3eb_2a204aba13b6">Recluse Seri</option>
+                        <option value="ae8080e8_0777_4e69_a6cc_36ae9443f473">Recluse</option>
+                        <option value="e852a3fd_5981_4399_ad66_b892643a6d0b">Recon BDA</option>
+                        <option value="_9ae30d66_8570_4206_a6a1_c796607a891b">Recon GEN1</option>
+                        <option value="_1264c459_af3a_443d_b8fe_21876b79691c">Recon ITG</option>
+                        <option value="_9ea8e97a_42f9_4d02_bc68_b5e2857b36d6">Recon RSO</option>
+                        <option value="_12485e2a_1e11_4eee_b8dd_19ea24f325d0">Recon</option>
+                        <option value="c6b8e214_7a34_4593_bbb9_11497f1fe746">Recruit Charred</option>
+                        <option value="_2628de75_90de_4b28_a57c_667765bc9c37">Recruit Marked</option>
+                        <option value="f6ad6eea_d75c_4478_b8a9_deed4b0642ae">Recruit Proven</option>
+                        <option value="b24e79b6_a66e_45ff_a0a2_761df648212b">Recruit</option>
+                        <option value="ab179051_d449_47a2_8ec8_195274d6eb52">Rogue Cutthroat</option>
+                        <option value="c407699d_da48_4c90_b77c_d12cef8fa5dc">Rogue</option>
+                        <option value="a14b4ff4_9b7d_4a75_9014_7d375c4259c2">Scanner</option>
+                        <option value="be765491_8848_4704_ac9b_89db22ab43aa">Scout Decoy</option>
+                        <option value="_382d56f5_daa4_4bd5_ac05_4f6e4e18a88f">Scout Observer</option>
+                        <option value="adc4d72b_c13b_4c89_b8f2_948dcfb349c3">Scout Outrider</option>
+                        <option value="_4ed8dfef_324a_440e_b54f_98d7d186c416">Scout</option>
+                        <option value="a24bad1d_ddd4_4771_a1fb_a6a20f21d011">Security GEN1</option>
+                        <option value="_3d01a70e_6b5f_469e_8885_827a7f451b92">Security Oppressor</option>
+                        <option value="_5aafe5fd_9ef1_411f_8ad8_63b33d581d82">Security Watchdog</option>
+                        <option value="_49e1852d_ec99_466d_ba15_ea0a7b72bffa">Security</option>
+                        <option value="f7e03879_be1e_4450_a884_466fea87ca1f">Seeker Horizon</option>
+                        <option value="e531dbb7_cb50_4f45_8bba_cf160f3a454e">Seeker Intrepid</option>
+                        <option value="be456c25_4f99_4c92_a598_c0ee9741390d">Seeker</option>
+                        <option value="_12e2b2de_e506_4216_a8f1_9d8997842272">Shinobi Heartless</option>
+                        <option value="d56d2e43_3157_465a_8632_658f2c332ed9">Shinobi</option>
+                        <option value="f66a3ce7_b424_4b21_b1cb_2e6151dce9a1">Soldier Dogface</option>
+                        <option value="_5b5d649c_6420_4ebc_a551_4688c7d8513d">Soldier Leatherneck</option>
+                        <option value="bb06333a_1c41_46de_9d35_fdc710359b71">Soldier Rebel</option>
+                        <option value="abeaf617_10f6_4c38_ba2c_4999329f756e">Soldier</option>
+                        <option value="_7eb72eae_d95c_4435_9af7_3053f808af8f">Stalker Arrow</option>
+                        <option value="_780c531a_3937_4a29_9b92_5d67697d4b0d">Stalker</option>
+                        <option value="_15b6ebdf_2d9a_47dc_bfdb_041303920bb3">Stinger</option>
+                        <option value="_93137daa_7ef5_4535_a849_c5fcb0be036b">Strider</option>
+                        <option value="_43159329_5904_47b6_b5e4_4cd30b60c186">Technician Override</option>
+                        <option value="dce091fb_4881_4c60_b8b3_d955bf8b125e">Technician</option>
+                        <option value="_29970174_a771_46db_8a83_580ddfb8ee08">Teishin Raikou</option>
+                        <option value="cf764fca_2f4f_4677_b755_412a80782575">Teishin Shuurai</option>
+                        <option value="_1443f7d3_31aa_46bb_8d5f_9df5880651b4">Teishin</option>
+                        <option value="_3ac46f76_f663_4390_9a79_7be407bf5616">Timmy</option>
+                        <option value="d54897ce_f387_4471_9d07_19c37f6c3e7b">Tracer Jackpoint</option>
+                        <option value="_0a3b687b_2d96_42f5_8761_4c935eb57444">Tracer Signal</option>
+                        <option value="ddd8c36f_2a96_4544_8b37_c248b12a61d7">Tracer</option>
+                        <option value="_0b485297_40e0_4353_b4ad_43f3ef99272a">Tracker</option>
+                        <option value="c9dc7ca1_7b3a_4f7b_b429_8d3a84eccdc1">Valkyrie Eir</option>
+                        <option value="dc40d488_dd07_4492_8dff_876ade5c5dd1">Valkyrie Hrist</option>
+                        <option value="b72eb2b5_c7e4_448f_8a3e_bf69e9e2b783">Valkyrie</option>
+                        <option value="_24ce3d5c_d829_4400_b393_92a1b6f7451a">Vector Interrupt</option>
+                        <option value="_7411d3e0_61f8_4924_b480_7ee6be845e5f">Vector Sequence</option>
+                        <option value="dc21a6f9_99e5_41c4_891d_8f8bc4d64833">Vector</option>
+                        <option value="_8a9c26a4_e239_4590_ab4d_97be056a6076">Venator Cestus</option>
+                        <option value="_979bd7be_2617_4a54_9702_190d7d79ab2c">Venator Retiarus</option>
+                        <option value="ea4b2d74_5d87_4e54_ad6b_b54e5e22527d">Venator Thraex</option>
+                        <option value="d2f2c1ba_6449_4813_896d_ee0b70408ddd">Venator</option>
+                        <option value="_4502ed9f_8b35_4185_b8bc_d2cf0144db4b">Venture Outward Bound</option>
+                        <option value="_540406cd_d010_451e_b7e8_2d870f77b434">Venture</option>
+                        <option value="a2b486c8_b10d_478e_aad8_7df11d1ac9af">Vigilant Watcher</option>
+                        <option value="_033455c9_f2de_4c1e_b20e_b88a3ace3f4f">Vigilant</option>
+                        <option value="b1736333_5038_4a6d_bc82_43c0de9c8cb0">Viper Strike</option>
+                        <option value="_5ab6f703_8817_4f70_8140_d11dda1a3bee">Viper Venom</option>
+                        <option value="_5524dd30_8682_4fb6_a3c5_37ae45beb83e">Viper</option>
+                        <option value="_6ded36a8_f533_4fdb_952e_b671bc1da43a">Void Dancer Comet</option>
+                        <option value="_00a81c74_a3ff_418f_b753_c66ea464037d">Void Dancer</option>
+                        <option value="_24f09295_5066_4112_a0d8_1d497cf3e662">War Master Augustan</option>
+                        <option value="_70e52598_f97b_4a96_aecc_7397f55e1f5b">War Master Scipio</option>
+                        <option value="_033bf984_9616_4306_80dd_e7a04165e412">War Master Tiberian</option>
+                        <option value="e259ad16_ad0f_4df2_93db_b85d54dc3577">War Master</option>
+                        <option value="c5345e9c_cd8c_4b26_a262_62e59a2fe1bb">Warrior Blade</option>
+                        <option value="_7f10d1b4_d7cd_402e_ae8b_8644149c8ebe">Warrior Helm</option>
+                        <option value="c0fae697_f686_4651_9a71_96065265ee13">Warrior Shield</option>
+                        <option value="_9d4bddf5_0b16_4b35_a857_9b70f6af503a">Warrior</option>
+                        <option value="a3884e51_426d_43b6_b9a7_6f6b94ccab74">Wetwork Cleaner</option>
+                        <option value="_0538d182_f72b_443b_b8c4_4eb42cc1b0ec">Wetwork</option>
+                        <option value="c5c1281f_cf1f_4177_92d2_94d89ff58fc8">Wrath Anhur</option>
+                        <option value="d91aa5cb_2450_46a8_90f2_89fd831ed57a">Wrath</option>
+                    </select>
+                </div>
+                <!-- Armor -->
+                <div class="settingsContainer vertical">
+                    <label>Armor</label>
+                    <img id="armorImage" src="assets/img/b4a868fa_317c_4902_9a13_7a471c50c8a2.png" alt="Armor Image" width="200">
+                    <select id="armorSelect" class="customizationSelect">
+                        <option value="b4a868fa_317c_4902_9a13_7a471c50c8a2">Achilles</option>
+                        <option value="_744ac1d0_396c_423d_8376_5f6db4e3d664">Air Assault Disrupt</option>
+                        <option value="bddfec7a_4087_467e_a3c3_38868b7177c8">Air Assault Impact</option>
+                        <option value="_55792e5d_e898_4cf6_b848_79e97f7098d6">Air Assault Specialist</option>
+                        <option value="_9fc068ec_b96a_4be8_861e_8da3ecefed18">Air Assault</option>
+                        <option value="_13894412_f49b_462f_af40_d2186d3a76de">Anubis Nephthys</option>
+                        <option value="_227d07e7_f744_4a44_928c_cdca8f81849c">Anubis Set</option>
+                        <option value="c23bd373_f402_48c6_9de3_9b200f3a8977">Anubis</option>
+                        <option value="_39069965_d2db_4ef8_beb0_0ce534a46822">Argonaut Idmon</option>
+                        <option value="c2f5021d_dd2b_416b_b3b8_bd289f361d98">Argonaut Nestor</option>
+                        <option value="_621f7a15_c01a_4401_9e5b_89e63429a591">Argonaut</option>
+                        <option value="_4ae1b8dc_898e_4ecf_82b6_ce1b42a49021">Argus </option>
+                        <option value="_33f32a77_0965_4807_8ffe_b8f2b54a7a5e">Argus Arestor</option>
+                        <option value="_8abca95a_30ef_4214_87cd_260f076063c1">Athlon Champion</option>
+                        <option value="d2bc6f31_7698_449a_929a_0db04151fff3">Athlon Cynisca</option>
+                        <option value="_370a8dcf_7ff4_4855_b860_7749a87b6334">Athlon Iccus</option>
+                        <option value="_370a8dcf_7ff4_4855_b860_7749a87b6334">Athlon Lycinus</option>
+                        <option value="dc0ae44e_6c80_49fa_8865_fe0e60fa4cc6">Athlon Varazdat</option>
+                        <option value="e45ae07a_410b_4bc1_9a5f_ca26b6d994a8">Athlon</option>
+                        <option value="_308b8a8c_3ed1_4856_a614_424df29a5176">Atlas Unbound</option>
+                        <option value="f80fd0cd_824e_4426_939e_bc0c08347187">Atlas Vigilant</option>
+                        <option value="_8aa0082c_6815_450a_ab98_e093b95c03c1">Atlas</option>
+                        <option value="b783e196_644a_43c0_b9ae_64214c323f4b">Aviator Ace</option>
+                        <option value="_9cc96403_2392_42cf_8d69_32513c0e3566">Aviator Csar</option>
+                        <option value="b894701c_5ed6_4ef4_93c0_3069bbe3cb35">Aviator Delta</option>
+                        <option value="e858c99c_4c9a_4cbe_9534_1d68cb267ba5">Aviator</option>
+                        <option value="_77a9a851_634f_4287_82aa_d7d98f11107c">Breaker Doomsday</option>
+                        <option value="_39058375_5036_4625_aafb_f232d8d8cd8a">Breaker Hatchetman</option>
+                        <option value="_171f5a7a_45dd_4c64_adcc_628ada2d0c58">Breaker</option>
+                        <option value="e095c83c_8e71_472f_b687_d3f54e3f35dd">Buccaneer </option>
+                        <option value="c2fffcd9_d4de_43f1_8a3f_bcb2887c0105">Buccaneer Illyri</option>
+                        <option value="e4417443_1746_4cec_bb90_02669f95c2e4">Buccaneer Tyr</option>
+                        <option value="_5208caf8_2d94_4b55_9e8f_9b150287df51">CIO</option>
+                        <option value="_7ed4973b_9a57_47b3_a0e6_8433ac872f23">Centurion Ironside</option>
+                        <option value="_498268f9_cb10_406b_97c3_417914693ddb">Centurion</option>
+                        <option value="_1e0e878c_e8a7_4d0c_a122_bf6f4c6ec3ee">Challenger</option>
+                        <option value="f7701ba6_762c_416f_8008_c48c9bbc38df">Cinder</option>
+                        <option value="_2d0003a3_1b53_40d6_95c7_5768e3be658b">Commando Arius</option>
+                        <option value="_45e1827d_526e_4477_9857_b13f53e85375">Commando Matrix</option>
+                        <option value="_4fd1cef8_f4d5_487e_ad9d_b692becdda43">Commando Verde</option>
+                        <option value="_5aaba7c3_690f_4b3d_a380_f5cc371d034d">Commando</option>
+                        <option value="_205f75f6_5c9b_432c_a7a1_15100c95f51b">Copperhead </option>
+                        <option value="_6b6de396_f5c1_40bc_9492_ed951e47a098">Copperhead Fangs</option>
+                        <option value="ae952290_a6b5_4d51_9cc8_101467b8685a">Cyclops</option>
+                        <option value="eb0fe4dc_6d9a_41e0_8ef4_cd47bd98ce5a">Cypher Copiale</option>
+                        <option value="_3a35cd9c_ae41_4d81_843f_a1714efe1e70">Cypher Voynich</option>
+                        <option value="_217bab62_668e_49e1_a9b4_a8377d33b9d2">Cypher</option>
+                        <option value="c2c2dd24_69c5_43ba_9153_f4f14ac80647">Deadeye</option>
+                        <option value="b70c1bc4_6920_4072_9692_7a307c087f93">Decimator</option>
+                        <option value="_6686c595_7570_49ef_80bc_0382bd24e1ea">Defender Castle</option>
+                        <option value="a505ead5_ab66_4dea_b02c_99c0f9d235d9">Defender Fortress</option>
+                        <option value="_1c56cf00_00e7_47aa_b6f6_3cf99bbaed17">Defender Redoubt</option>
+                        <option value="_3ff52f52_ffa5_4ef2_9b5d_a709c492f8ef">Defender</option>
+                        <option value="f9d516c4_6ab3_479d_8ec3_8dbb70e1410d">Dynast Cincindel</option>
+                        <option value="_73d153a8_8fff_4b2d_ba66_7aa78a7bf784">Dynast Lilioc</option>
+                        <option value="_2a80c6f8_38ad_495f_8bf3_813da68374c2">Dynast</option>
+                        <option value="_9d56f026_415a_432a_a612_0d4a85789137">EVA Hadfield</option>
+                        <option value="_7f31e33c_740a_47f0_ae52_0f54694f03fe">EVA Leonov</option>
+                        <option value="_01f95ad8_e02e_4a34_8f52_a75b4dbcd73a">EVA Solovyev</option>
+                        <option value="_37973e09_f884_4497_b74d_d034e37d1e49">EVA Zhigang</option>
+                        <option value="_72f15fde_ee40_4f59_9389_6b17bf979a79">EVA</option>
+                        <option value="_0d094b05_2bf1_42be_a3bc_1e9572c8a971">Enforcer Strongarm</option>
+                        <option value="cd3cab88_66ae_4bfb_9469_53e08020c021">Enforcer</option>
+                        <option value="_68b45ade_7383_4df7_8291_02cf98f61803">Engineer</option>
+                        <option value="_41f8588f_f596_4638_9687_f3094494ec6c">FOTUS Chillrose</option>
+                        <option value="a2cfaaa8_e54b_46fb_944b_9fb0b19b40ad">FOTUS Synchronize</option>
+                        <option value="_860b03d4_29b6_4ed3_8dbe_7d5806271c2d">FOTUS</option>
+                        <option value="c8535bdc_d00e_4b1d_8f56_166791270fa2">Fenrir Unchained</option>
+                        <option value="_74bb6c6c_c3b1_46da_87e5_c3b1638e8261">Fenrir Woebringer</option>
+                        <option value="_0ab1f1eb_ed16_4b0e_9470_36bee5f97fa6">Fenrir Wolffriend</option>
+                        <option value="_4319ccb7_f783_477a_8918_089a66d9ba75">Fenrir</option>
+                        <option value="cf904d13_a1b3_4dc6_8545_d4186a0de94e">Foehammer Echo</option>
+                        <option value="_854fc9c8_1ab2_4961_8ccf_1ea0821810bb">Foehammer Victor</option>
+                        <option value="_6c529c75_8dab_4cad_9356_ac3a7b0c0129">Foehammer</option>
+                        <option value="_65139a89_3b18_4876_b45f_122a716882eb">Freebooter Privateer</option>
+                        <option value="_946da9ed_37cd_4348_bc12_81d9fcc8671d">Freebooter</option>
+                        <option value="e13e2bd2_87f8_4f0b_aa19_33c6ab7076b7">Goblin Dokkaebi</option>
+                        <option value="cf444bcd_e048_43e5_a733_2c9c0188b15f">Goblin Erlking</option>
+                        <option value="fb15e4fc_efe4_4786_8579_fc3c853e868d">Goblin</option>
+                        <option value="afceec97_4080_4fba_ae1b_82d0e0f60808">Gungnir Dvalin</option>
+                        <option value="_77996edf_d7a6_414b_83b3_c18591594715">Gungnir</option>
+                        <option value="_1855dad3_e561_4e7f_919f_5d4112ec84f2">Helioskrill Bloodgorger</option>
+                        <option value="_407a4151_131a_4dd0_b44d_8532777e084e">Helioskrill Warbound</option>
+                        <option value="f0df8c16_9d58_47dd_9d70_cf674640d60e">Helioskrill</option>
+                        <option value="_9217cdb9_fad9_4971_a828_458c7d1624a8">Hellcat Marauder</option>
+                        <option value="_61e46def_3c86_4600_a1d9_5faacac43eff">Hellcat Onslaught</option>
+                        <option value="edbb76ee_36a1_4962_9963_a1717b68b9c1">Hellcat</option>
+                        <option value="dc3027b8_7077_4de1_b70b_542e4959c9ef">Helljumper </option>
+                        <option value="e892ad82_4827_444f_8d72_c9167f783e7f">Helljumper Feet First</option>
+                        <option value="_86fef37e_dd5d_4531_8835_565767834a04">Hermes Dolios</option>
+                        <option value="a3e4e53a_3f05_4530_9c4f_6159651917b3">Hermes</option>
+                        <option value="_04ef160d_3c13_48d4_a3e6_08af2e35fe63">Hunter </option>
+                        <option value="_4a34ed53_a1fe_4bf5_ae58_1d44748f755a">Icarus</option>
+                        <option value="f5c1367a_dc65_4584_891a_e54f9a57feb8">Indomitable ErÅ‘d</option>
+                        <option value="_779406c4_7e46_446a_bf97_f8d63659b14f">Indomitable</option>
+                        <option value="ef15850e_eec0_4697_b905_dcf40ee5341c">Infiltrator Saboteur</option>
+                        <option value="b436fa9b_48e6_4bb5_8b20_79571cb9e49c">Infiltrator</option>
+                        <option value="_53fb22b9_6881_432e_b0ce_1e6e79c6b679">Interceptor Cutter</option>
+                        <option value="b4535027_2bd7_4e97_8f06_11038a877b1d">Interceptor Imperator</option>
+                        <option value="b71849c3_49ff_405d_9a6e_2dd9214929ac">Interceptor Rictus</option>
+                        <option value="_91e1e659_9033_4d01_9715_7ef6dfd4035a">Interceptor</option>
+                        <option value="_63a327b0_6cc3_4e39_bc8b_8adea837ccdf">Intruder Trespasser</option>
+                        <option value="_6b37be2a_017e_4a84_98ed_e66e3a8eb478">Intruder</option>
+                        <option value="_58614484_1872_4466_9e97_001da08ddf77">Jumpmaster Dispatcher</option>
+                        <option value="_30f97868_dcb3_4b87_aff5_0efd7eb8b12a">Jumpmaster Ripcord</option>
+                        <option value="d804082c_521b_4960_b717_0b957b24a362">Jumpmaster Sky Soldier</option>
+                        <option value="_97815dab_f0d0_4051_9156_95315b1c50de">Jumpmaster</option>
+                        <option value="_025004a5_2436_4118_b9d3_2407e5fbb1dc">Legionnaire Alaris</option>
+                        <option value="_52f37c73_a131_4dda_8f10_faf5ddde223b">Legionnaire Optio</option>
+                        <option value="_80a2be89_65c9_4ca7_a6d3_65e6f954e5bf">Legionnaire</option>
+                        <option value="e76ff0dd_4e11_4dea_ae5c_cffb6582f6b9">Locus Edge</option>
+                        <option value="e1e67ef5_83e6_47da_995c_05da244b0558">Locus</option>
+                        <option value="_3c6bf8ab_28de_4102_8e62_de8c756ddd3e">Mako Chthonic</option>
+                        <option value="_0c91f27e_0c36_4fb2_888d_14267f2bd675">Mako Darkwater</option>
+                        <option value="_34ac8cd4_07a6_4401_8fcc_132462165518">Mako</option>
+                        <option value="_37f04d02_2c6f_404b_a356_86fb89031765">Marauder Keres</option>
+                        <option value="_68207e27_db11_4e76_ac30_1c9f4d11dd94">Marauder Kratos</option>
+                        <option value="_6b0d5497_45b2_4b80_a588_9b55a71715cb">Marauder</option>
+                        <option value="aa9a3268_00f5_4db4_a278_831a12cc932d">Mark IV GEN1 Arcadia</option>
+                        <option value="_2a893cea_2b39_42d1_8a34_002e5e64a16c">Mark IV GEN1</option>
+                        <option value="_623cf5d7_ab61_4b65_b645_9f86ef2840bf">Mark V Alpha Reflex</option>
+                        <option value="ed57a58e_ba29_42b0_afe0_397e25fa1509">Mark V Alpha</option>
+                        <option value="_1e5da19d_271b_4df1_80f6_5d934852518c">Mark VI GEN1 Scarred</option>
+                        <option value="ab281eaf_ccd8_4226_8af2_981f5cd1a288">Mark VI GEN1</option>
+                        <option value="cd640e82_9cba_4ae9_9d6f_928aeb1ad07e">Mark VI Primus</option>
+                        <option value="b6d3cf2f_3c8f_41ed_bd59_da4ef548c93c">Mark VI Regent</option>
+                        <option value="_867a9998_25c9_4fa8_b3a6_7d60fce86213">Mark VI Satrap</option>
+                        <option value="_3957e360_5f21_4a4f_a978_51d5551be260">Mark VI</option>
+                        <option value="bb3bb0c8_9102_451a_8872_20a439ddf631">Maverick Jester</option>
+                        <option value="_76aa1f6f_b8c0_484d_ab83_9b557fab68bf">Maverick</option>
+                        <option value="_932dad2f_1648_44d6_9800_acfa0e3cd851">Nightfall</option>
+                        <option value="_424875e3_ae56_410e_aa7b_565aca4cb1b4">Noble Honor</option>
+                        <option value="_3d2620f3_ed98_4713_be89_98b4f50c7ced">Noble Valor</option>
+                        <option value="_974a5256_eec1_4e55_8b6c_f521970b5fd3">Noble</option>
+                        <option value="c3baec36_32e1_4924_b830_3a72a16fa0f3">Nomad Unchained</option>
+                        <option value="_02c44e7e_bd6d_406d_8f91_95e469fbd0d5">Nomad Wanderlust</option>
+                        <option value="c8902d4c_9458_417d_80fa_7b4bfc46507d">Nomad</option>
+                        <option value="c5c6163b_7494_42f9_9307_38ea7fe61d93">Operator</option>
+                        <option value="_15476588_8c05_403c_ac7c_df275c5dae89">Orbital Aphelion</option>
+                        <option value="_59451d0a_4dec_46f6_94ed_05af446f3e1f">Orbital Equinox</option>
+                        <option value="_7f778c47_955a_4e55_81d9_8be986973910">Orbital Perihelion</option>
+                        <option value="_55d9233b_10fd_469a_a927_6fbd45eb17dd">Orbital</option>
+                        <option value="fd8a60ec_094e_4ff2_bf8d_dd244621a04e">Pathfinder Trailbreaker</option>
+                        <option value="ab0ff6aa_0125_406c_933d_291f3edb9573">Pathfinder</option>
+                        <option value="_3b52e75a_42dd_4b06_9de1_ea25e78d3d9b">Pioneer</option>
+                        <option value="_7a5a43e1_0fa3_4261_985e_649771db7927">Protector Stalwart</option>
+                        <option value="_3bf203f8_b5a2_4989_a6e1_ec99d39c82a2">Protector</option>
+                        <option value="_7bd30fdf_c6fe_4bdb_a617_0dea96990b07">Raider</option>
+                        <option value="_26d16c49_fb24_40eb_bd64_64f11ed55769">Raijin Sprite</option>
+                        <option value="_17a5c6fd_f8d0_4f96_a6ce_923737a5e915">Raijin Stormstrike</option>
+                        <option value="a9199a42_db57_4870_aab8_0fc6e76e7143">Raijin</option>
+                        <option value="c257b671_f960_4dc6_8e30_347195bd7348">Ranger</option>
+                        <option value="_660ce896_41cb_465f_ac7f_b3d840da440e">Reaper Grim</option>
+                        <option value="_61bd5f0e_287c_46dd_ba67_985aceba6ccc">Reaper Mortician</option>
+                        <option value="_1d80334c_27bf_4b5d_af01_0a693d0b76ad">Reaper</option>
+                        <option value="_75fa0665_f56d_43ab_aac6_15e55182cfdc">Recluse Laeta</option>
+                        <option value="_1b81040f_1ee8_485d_b9ce_3a5a3ef7e981">Recluse Seri</option>
+                        <option value="_847b1517_1f1b_43a4_8210_1fde0d39ddd8">Recluse</option>
+                        <option value="f1a27365_47b9_4b0c_98ff_02bfc36a5ebf">Recon BDA</option>
+                        <option value="a31777b2_5070_49b5_bb8a_15ca40cf8dda">Recon ITG</option>
+                        <option value="d0b10b8c_d26c_4587_8ba6_c5ca0398eb97">Recon RSO</option>
+                        <option value="ba6483d7_0678_40aa_a0a9_409853686d7b">Recon</option>
+                        <option value="_4e603d88_9a59_4ac4_9cab_dcc4969282fd">Recruit Charred</option>
+                        <option value="_2ac84f8b_3483_44a8_a8ce_431fe5ef6bb4">Recruit Marked</option>
+                        <option value="fcd2a59f_3066_43df_aebc_c0ea42270185">Recruit Proven</option>
+                        <option value="de423792_9c41_4e93_a572_5b0ca526c9aa">Recruit</option>
+                        <option value="_9b87827d_1013_46cd_b1f6_5cd9452c340a">Rogue Cutthroat</option>
+                        <option value="ebda33f7_4d1d_4e9a_a81b_819289a65631">Rogue</option>
+                        <option value="fdc8745b_e49c_4543_a7a5_46dab6fd2ef7">Scanner</option>
+                        <option value="f763dfda_da9a_48be_83be_bc885146700c">Scout Decoy</option>
+                        <option value="f98b58a2_35a8_48f1_81b3_a7d4da2b4bfa">Scout Observer</option>
+                        <option value="_3360f19a_cd69_4fe2_8b73_1af383586711">Scout Outrider</option>
+                        <option value="a7d408e9_a477_4dab_b317_0968fe33ded3">Scout</option>
+                        <option value="_8510691b_640f_4ac3_a2c0_4ee169c11a40">Security Oppressor</option>
+                        <option value="_69fc16d9_fdd3_4cb2_bd3a_14d8298b7696">Security Watchdog</option>
+                        <option value="_7437d325_4828_42ec_b7e5_4b1688c33cf2">Security</option>
+                        <option value="_3d97201c_fe3d_4929_972e_200a76e5a6d9">Seeker Horizon</option>
+                        <option value="d2df851a_788f_4c57_b349_3afb779f833b">Seeker Intrepid</option>
+                        <option value="d01c703e_c2bc_4b18_88e5_c2daadb11076">Seeker</option>
+                        <option value="e8f73c43_b737_40c8_9dcd_f4809e5a1727">Shinobi Heartless</option>
+                        <option value="c1516ea5_a9ce_4b2b_b915_0fccb0e9c37f">Shinobi</option>
+                        <option value="_2d7a3954_14fe_4830_98fd_3ea9e56b7e67">Soldier Dogface</option>
+                        <option value="e5eec21f_4e4b_4911_8be9_3fd3b1b594cf">Soldier Leatherneck</option>
+                        <option value="_4f4f131c_51db_4875_b7f3_3eaa8574516c">Soldier Rebel</option>
+                        <option value="c907935e_2e06_4c90_a590_b3cce1f53429">Soldier</option>
+                        <option value="_7859e676_c958_4473_93ef_8bb7db644833">Stalker Arrow</option>
+                        <option value="eb63befe_42fd_4a3e_9dff_113a6e945d54">Stalker</option>
+                        <option value="f0087715_d1c7_478e_97a2_c8327fe9bc8f">Stinger</option>
+                        <option value="_8f628e4d_108d_4422_8a63_2f7cc1feb850">Strider</option>
+                        <option value="_34238c49_db7e_4fa2_9323_dfdca3cee1e0">Technician Override</option>
+                        <option value="_85bf01f6_2591_4a5b_83de_03122b7aab29">Technician</option>
+                        <option value="_2daae122_4fce_45e5_a0cc_8406db4f9a12">Teishin Raikou</option>
+                        <option value="_381c16da_7375_4418_a82d_db8069ab6822">Teishin Shuurai</option>
+                        <option value="cd4b8cb2_a666_40db_8662_c8e4ba1046fb">Teishin</option>
+                        <option value="fc11e89e_6f64_407a_a060_c8076d63dd4e">Tracer Jackpoint</option>
+                        <option value="_4c352da1_7f2f_485e_b8e7_7b67c0502e6d">Tracer Signal</option>
+                        <option value="_19c63881_be9a_4885_bf42_2ef255df13ad">Tracer</option>
+                        <option value="_967b4645_e3ad_4136_8d8e_bcc9c4d1b12e">Tracker</option>
+                        <option value="_47899d9d_c658_4c93_8195_0a5176122727">Valkyrie Eir</option>
+                        <option value="e042eb5f_e39a_425e_b7df_589d1c24f9e8">Valkyrie Hrist</option>
+                        <option value="a34e036e_d696_4430_b87c_adb6d6e89cec">Valkyrie</option>
+                        <option value="_75fdee5f_d58a_4adc_aed3_11c61b0bbf09">Vector Interrupt</option>
+                        <option value="_7e8ffe16_b934_4921_a568_429d135df8df">Vector Sequence</option>
+                        <option value="_299e7c5c_e450_41e7_b962_925c8f074045">Vector</option>
+                        <option value="_1ef5e91b_dd3c_44d2_8faa_0e10826c0b20">Venator Cestus</option>
+                        <option value="_8c4878fa_6572_4719_8563_105c15147538">Venator Retiarus</option>
+                        <option value="_17230023_5914_4c19_9d81_23d993756f6b">Venator Thraex</option>
+                        <option value="_7e858c46_5aa0_4e5f_883e_72c4cbc35139">Venator</option>
+                        <option value="_9560c6f1_e4e4_4af3_8d05_2d78dbfb9577">Venture Outward Bound</option>
+                        <option value="_1f555556_224b_4f1d_87ff_c739f39fcce1">Venture</option>
+                        <option value="ac7dad67_ca7f_45ff_b331_69444086a8d3">Vigilant Watcher</option>
+                        <option value="d8b38ab1_e039_4200_9c32_d406d1447019">Vigilant</option>
+                        <option value="a6a9d5c0_aa0d_4fa3_88ba_9262ca386f28">Viper Strike</option>
+                        <option value="a1c5ba55_af0b_4e59_abb9_29e8d95118ee">Viper Venom</option>
+                        <option value="_38e9b4f7_1666_43d9_90fb_4c9ae4394561">Viper</option>
+                        <option value="_6e5bee25_3804_4daa_b312_8079ec2d7dd6">Void Dancer Comet</option>
+                        <option value="c4dc5685_512e_4f71_92be_33e622220d15">Void Dancer</option>
+                        <option value="_1e7901ce_a20e_4e51_a430_a4dab3a31b5a">War Master Augustan</option>
+                        <option value="_137844eb_f82c_4aaf_a8d9_4cdf50b92cb9">War Master Scipio</option>
+                        <option value="bbf0d7b3_7610_47ef_af34_5a839151fde0">War Master Tiberian</option>
+                        <option value="ffffee57_050e_490e_aa7c_f02bc5358b26">War Master</option>
+                        <option value="_027fb4bf_1047_4369_bee4_aa52aa51f776">Warrior Blade</option>
+                        <option value="af2a944b_b73f_43d7_b123_c8a5e30c2b89">Warrior Helm</option>
+                        <option value="a8a2b713_3af4_4141_9a2e_66af46c84f44">Warrior Shield</option>
+                        <option value="_51dd7e81_b514_4ab5_bd00_2c47c82d76cd">Warrior</option>
+                        <option value="dd459440_b212_4889_b2aa_82e26fbcc621">Wetwork Cleaner</option>
+                        <option value="bb0b51c9_a00c_40a6_8b8f_3a2fff5bf0e8">Wetwork</option>
+                        <option value="_16e9623b_3fd6_4986_8a44_91c5c467041b">Wrath Anhur</option>
+                        <option value="_321bf630_4e65_4257_a0cd_615c8bb05cec">Wrath</option>
+                    </select>
+                </div>
+                <!-- Visor -->
+                <div class="settingsContainer vertical">
+                    <label>Visor</label>
+                    <img id="visorImage" src="assets/img/_02fc2f95_ec69_433a_acec_2170ed9d1314.png" alt="Visor Image" width="200">
+                    <select id="visorSelect" class="customizationSelect">
+                        <option value="_02fc2f95_ec69_433a_acec_2170ed9d1314">Recruit</option>
+                        <option value="be3de09c_090e_45b6_8c72_0c1f2ac45f0d">Abyss</option>
+                        <option value="_2f536a6c_addd_4996_8de1_dd8eb1c28fe6">Armorer</option>
+                        <option value="d63f9259_53a4_40cd_9965_d82baf0e64e9">Aureus</option>
+                        <option value="_16760cfd_4f2f_4831_9af5_69cb0c45ce80">Aurora</option>
+                        <option value="e9a9f276_7bba_485e_9d32_475aa1da1833">Autumn</option>
+                        <option value="_94cf1e2e_1643_499b_b42a_fc98f0909844">Beltane</option>
+                        <option value="_5c785b8d_ef95_4a59_9333_90a110c6d33f">Blindside</option>
+                        <option value="_3730b06d_a24d_4d68_ab29_e363da5a7da9">Buckingham</option>
+                        <option value="_664d38b6_4979_42e1_a4f6_115563f0ea8c">Burgundian</option>
+                        <option value="_6e2b751e_aecb_4b11_a274_3425fb2af413">Clockwork</option>
+                        <option value="_278b128b_7f4d_40b2_b9a5_c1de7ed78356">Connected</option>
+                        <option value="_6dbfcf42_79b3_4dc3_b063_3a13d756f8f3">Cyan</option>
+                        <option value="_8b25642f_c7f8_4e38_879b_6912a32885f7">Dauntless</option>
+                        <option value="f516b0ff_e42b_491b_9b07_9339da6fb1b7">Daybreak</option>
+                        <option value="_8d8696bf_f6e9_4003_be6c_96c7d24dc00e">Dianthus</option>
+                        <option value="_1a0590f4_2243_4528_8e69_bd3d04a1c6ad">Dusk</option>
+                        <option value="ea536b9a_2193_49dc_9274_ade5cc468558">Dynasty</option>
+                        <option value="dd503b3e_22ad_4f20_b4ab_80579c5395d0">Ecto</option>
+                        <option value="_6ee87f4f_8958_4327_8bad_a073a4f8edaa">Envy</option>
+                        <option value="_36d99171_6fe6_465d_848e_77dfff3923af">Expedition</option>
+                        <option value="b7362adc_c2d3_41cc_a1ee_75d0cd972ff1">False Dawn</option>
+                        <option value="_5df334ca_a729_4b82_ac8c_0f3418896f8e">Flood</option>
+                        <option value="_39b793c3_1a7c_44b6_8fdf_fec2c2282eff">Foucault</option>
+                        <option value="_06a9e976_ea09_4d88_9a67_6dd43938c0a8">Frost</option>
+                        <option value="_14a2c5ce_80e8_466a_81bf_be470449395a">Gallows</option>
+                        <option value="_60e0f241_0916_4a97_a207_639dd5a2a510">Glacier</option>
+                        <option value="b31dc35d_62c4_4c56_b15c_4126c426acd0">Greystone</option>
+                        <option value="_5124cd18_7ce7_4984_8fd7_a309dfe7798a">Hypocenter</option>
+                        <option value="_10dc73bb_7d44_48cd_bb67_25840f9dc5f9">Ichor</option>
+                        <option value="e67a5def_9a3a_4ca2_9628_0d9ea5b867d6">Independence</option>
+                        <option value="_8159824b_0dde_4a25_b50d_210f2d9ef0f6">King</option>
+                        <option value="be25f06f_d163_4037_9789_7dcc5309fe36">Legendary</option>
+                        <option value="_12a7d1d4_c712_44c1_8af7_2ef37e250da2">Mad Dog</option>
+                        <option value="_7dd32a38_6b05_4ae5_abd4_e5f749e781f6">Matrix</option>
+                        <option value="_599cc6bb_9689_46e0_b4be_375b9aad7c9a">Midnight</option>
+                        <option value="b62bc2f5_db3e_4b08_9362_b21f9ce5090a">Mithral</option>
+                        <option value="_69b175c1_685c_4d3b_b2f9_369a18b1145e">Muse</option>
+                        <option value="_4840aae0_5fd1_4617_b8b9_4d83dc402d38">Pendragon</option>
+                        <option value="_5df3973d_d56e_4bd3_bbf6_f4178dba463e">Primeval</option>
+                        <option value="a0bda5c6_7bc4_4324_a614_1f243f13c039">Rampant</option>
+                        <option value="_0466662a_99d2_4540_af09_99184d66cea3">Reflection</option>
+                        <option value="_513009d8_6c19_4cfa_81c0_2d56bf7399f5">Regnum</option>
+                        <option value="_84e24ef2_d2f8_4553_81d5_47cfb06475df">Remembrance</option>
+                        <option value="_0cf074c6_7521_4a3b_bdea_405a6b08a6fd">Resolute</option>
+                        <option value="e0a00225_b853_459f_95e6_d4a60ae496cb">Rex</option>
+                        <option value="a2626965_c1aa_45ea_a98a_ab1911aeb105">Rime</option>
+                        <option value="d7e3994f_728a_4ae0_8a66_fdb2d053889d">Royal</option>
+                        <option value="_2adc44e5_e291_4d3d_a135_3d4ef67bfc6a">Saturnine</option>
+                        <option value="_45c943fc_de45_42b2_bbce_4aca78e562e0">Scoundrel</option>
+                        <option value="_0ae70aa1_1589_40e4_87a5_3f5d509f393f">Secrets</option>
+                        <option value="fcd2aa23_c003_4a3f_a670_fe32d85ad93a">Sluagh</option>
+                        <option value="ac27079d_22ea_4fe4_af97_feeecf24754f">Solar</option>
+                        <option value="df0655c6_1d75_49a0_bbea_97ada3c61bbb">Starfire</option>
+                        <option value="_4ee3e7d7_31e7_438a_ab72_40b2067325f2">Strife</option>
+                        <option value="_2d43c352_4513_46a7_9978_c3ec8d2da936">Sunspot</option>
+                        <option value="_86b7f283_af02_40f6_a176_2e1235c10d19">Tenebrae</option>
+                        <option value="e81ca8f1_7ab8_4e55_8158_c63ce956d821">Torchbearer</option>
+                        <option value="ca56312b_13e8_4a95_9922_a45952fd10ae">Unbreakable</option>
+                        <option value="e3937946_37ce_4f74_922e_08ca648cf7d5">Vandal</option>
+                        <option value="cae1f601_31dd_4dcc_a497_eb764ceecc17">Verdant</option>
+                        <option value="_9ff333a5_042b_43b6_a37a_3ed136bff8ce">Vespertine</option>
+                        <option value="_53e38b29_48c5_4116_a7e8_b4449b230683">Wild Hunt</option>
+                      </select>
+                </div>
+            </div>
+            <div class="horizontal">
+                <!-- Primary Armor Color -->
+                <div class="settingsContainerNoWidth noAnimation">
+                    <label>Primary Armor Color</label>
+                    <div id="colorGrid" class="grid-container" name="primaryArmorColor">
+                        <!-- Grid items will be added here -->
+                    </div>
+                    <div id="primaryArmorColor" class="colorBar"></div>
+                </div>
+                <!-- Secondary Armor Color -->
+                <div class="settingsContainerNoWidth noAnimation">
+                    <label>Secondary Armor Color</label>
+                    <div id="colorGrid" class="grid-container" name="secondaryArmorColor">
+                        <!-- Grid items will be added here -->
+                    </div>
+                    <div id="secondaryArmorColor" class="colorBar"></div>
+                </div>
+                <!-- Spartan Gender -->
+                <div class="settingsContainerNoWidth noAnimation">
+                    <label>Spartan Gender</label>
+                    <fieldset>
+                        <input type="radio" id="male" name="spartanGender" value="male" checked>
+                        <label for="male">Male</label><br>
+                        <input type="radio" id="female" name="spartanGender" value="female">
+                        <label for="female">Female</label><br>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div id="submenu2" class="submenu hidden">
+            <div class="horizontal">
+                <!-- Assassination -->
+                <div class="settingsContainer vertical">
+                    <label>Assassination</label>
+                    <img id="assassinationImage" src="assets/img/_9deda07f_4352_4c46_8a94_aeafaa9f72f0.png" alt="Assassination Image" width="200">
+                    <select id="assassinationSelect" class="customizationSelect">
+                        <option value="_9deda07f_4352_4c46_8a94_aeafaa9f72f0">Random</option>
+                        <option value="_6cc4bb34_4f80_4dd2_ba7d_2b75616b6a3f">104 Ways To Die</option>
+                        <option value="_6bcb963c_9745_4d23_b2de_e1ba4010abf4">A Good Ribbing</option>
+                        <option value="_5a5b80eb_4ff3_4a22_8799_94046e7f7d05">And Stay Down</option>
+                        <option value="a15fa4f0_1a5b_497d_a309_5b4e610fbb96">Back Breaker</option>
+                        <option value="_60352281_af85_488b_b5f2_135945203a79">Don't Flip Out</option>
+                        <option value="d6d8bc3e_4f51_4e5b_b93e_89d2f2675156">Emile's Regards</option>
+                        <option value="_4a3b226a_bbbc_42b4_8c13_5250f27d3c12">Eye Biter</option>
+                        <option value="_1f61166a_b856_4387_8195_33c81a9d500f">Fisticuffs</option>
+                        <option value="_85d033c1_c72a_49cc_9457_8fe452942dc4">Get Low</option>
+                        <option value="c0ea8a3a_2734_4067_be35_f069aefe84b8">Helping Hands</option>
+                        <option value="_32ca4a17_3ec6_4b3a_b7d1_d6553af08a04">Inevitability</option>
+                        <option value="f046cba6_e035_47bf_a900_1e459aaec389">Knee-dful Things</option>
+                        <option value="_2b224ac1_4389_4b31_9dfd_f59a57a3e2cb">Lawn Dart</option>
+                        <option value="ffd44e47_697c_4e1a_ab99_009eca3095ef">Liftoff</option>
+                        <option value="_3168b153_3968_41b0_99b4_e7631597de26">Meat Hook</option>
+                        <option value="_64d4ed7d_8cd5_4614_a74f_d56aa0b30d80">Nice Try</option>
+                        <option value="_6742afc0_dd11_4b24_afe0_d3cc864abe98">Oh Snap</option>
+                        <option value="d6fe3aaf_1734_4218_abf3_c5c163baf4dd">Over The Top</option>
+                        <option value="b3450f20_79ca_47b7_a10f_ec55b3c0556a">Shove It</option>
+                        <option value="caa7ccb1_2912_4561_b981_ee798be14730">Spin Cycle</option>
+                        <option value="_371bada9_7223_4e5b_8565_248868734ffa">Spinal Tap</option>
+                        <option value="a3cb89d5_df6b_4ebf_9095_6230d7eaea40">Stop Stabbing Yourself</option>
+                        <option value="ffd51f78_87f5_46f9_afd0_fc16c84b3f3c">Supernova</option>
+                        <option value="cf9741e8_c036_4c01_b9ed_5813c4535383">Sweep The Leg</option>
+                        <option value="_7cf7eada_b9df_45dc_9eb7_5c4a3961c630">Take A Look</option>
+                        <option value="ebcd0e08_92f5_4fb5_9cd2_df92dac77f76">Take Out The Trash</option>
+                        <option value="ae8f5370_b6bc_413d_9ffd_6e25c622e107">Terminal Velocity</option>
+                        <option value="_85302fc6_b391_4399_b33a_a6e0c25c30e6">That Took Guts</option>
+                        <option value="_3e2cf9fb_4cc3_4ed9_9d98_04fe6f72e93a">The Kickoff</option>
+                        <option value="_6da051ea_3778_4df8_9c56_b3895031330a">Windup</option>
+                    </select>
+                </div>
+                <!-- Announcer -->
+                <div class="settingsContainer vertical">
+                    <label>Announcer</label>
+                    <img id="announcerImage" src="assets/img/d23aa1f1_d890_46f6_9a56_a1b5014225d1.png" alt="Announcer Image" width="200">
+                    <select id="announcerSelect" class="customizationSelect">
+                        <option value="d23aa1f1_d890_46f6_9a56_a1b5014225d1">Yabda The Merciless</option>
+                        <option value="_882bc691_5f31_46ba_b5f4_2162d527b679">Spartan Edward Buck</option>
+                        <option value="b1fc8cda_1c8f_46ba_9c51_e9eca3b853be">031 Exuberant Witness</option>
+                    </select>
+                </div>
+                <!-- Nameplate -->
+                <div class="settingsContainer vertical">
+                    <label>Nameplate</label>
+                    <img id="nameplateImage" src="assets/img/ab68cf22_2088_464e_b673_e6ceb41afc5a.png" alt="Nameplate Image" width="200">
+                    <select id="nameplateSelect"  class="customizationSelect">
+                        <option value="ab68cf22_2088_464e_b673_e6ceb41afc5a">117</option>
+                        <option value="_4cb53cdc_f11b_4379_9c34_5767ee174cb4">343 Industries</option>
+                        <option value="d508a18d_a280_49de_9aa0_4295c99d4d72">AMG Transport Dynamics</option>
+                        <option value="bd0dd171_fd1f_49af_8f96_34edcd83faa9">AR Start</option>
+                        <option value="_83b18540_905e_4c09_bd6a_661ac4dbca7a">Acheron Security</option>
+                        <option value="_6dd901fe_77a4_41c7_b72c_2b95b0a55e82">All Square</option>
+                        <option value="_2ba71c67_d5c2_4653_89a3_180935740b9f">Allegiance</option>
+                        <option value="_19d011d1_3459_432e_8496_320723753403">Anchorite</option>
+                        <option value="f8769052_73e9_4733_beb4_0f6c31ec6536">Angels' Mark</option>
+                        <option value="_190dfbc8_a44d_48bc_9fc8_2318a2141a9c">Anjou</option>
+                        <option value="_473f845e_d7bf_45d0_a091_6ab903a1eb15">Antelope</option>
+                        <option value="d926bcf6_7e1a_4802_aa94_d5a154acfdb2">Apollo</option>
+                        <option value="dcad1b30_961c_4738_b192_8e47b2af577b">Arbiter</option>
+                        <option value="a6398456_ad9a_4f4d_bc04_69cb732d94b9">Army</option>
+                        <option value="_27e96362_cb3e_4093_a6c2_e83e09589c50">Arrow on Target</option>
+                        <option value="b16bb426_8a6c_4e13_8d0f_c5e1ac9ebb5e">Arrow</option>
+                        <option value="_99afc5ea_a48d_4253_92bc_a413236c4280">Assassin</option>
+                        <option value="_560f73d7_fb45_41db_af57_c03bbc0e4363">Astro</option>
+                        <option value="_18fa1fbe_4f6a_491f_a5be_74ff3d72cc10">Atrial Flight</option>
+                        <option value="_9d894a69_58fb_4408_a670_ef8244b645b4">Auntie Dot</option>
+                        <option value="_83d9f75f_b727_4fcd_9454_59e2b4e093c5">Auspicious</option>
+                        <option value="ee32be0a_ff92_44a7_b10d_3927eea1d09f">Avian</option>
+                        <option value="_53f9cdf9_8fb5_4419_9e0b_8763878199a9">Awake</option>
+                        <option value="_211ce490_0928_4b40_88f3_bb35a1628875">Axiom</option>
+                        <option value="e2b9af92_de6a_4c76_a847_25c315420d45">Axis</option>
+                        <option value="_95bc3264_4fe6_4a49_9c07_5eaae2fdd9ef">BOOMco.</option>
+                        <option value="e92342b3_3c37_42a2_918d_b75baf109a24">BR55</option>
+                        <option value="dbaa4a10_ae6f_4dd3_8a36_a77a8db6834e">Barcode</option>
+                        <option value="d2fb7558_c79e_4132_b19a_8be7bd672fd0">Beard</option>
+                        <option value="e27de2e3_c59b_4924_b35f_76aa1487ca96">Beta Prime</option>
+                        <option value="_5045405e_4979_4b01_898f_bb60730b5c1c">Beta Recruit</option>
+                        <option value="b3c43093_eeed_4651_8a13_e06901158cb5">Beta Star</option>
+                        <option value="c9173548_1b24_4fad_b7bf_d595087102ff">Blue Team</option>
+                        <option value="dd0d23bb_0c65_4225_8153_5bfe93e0ece5">Bolt</option>
+                        <option value="_0fbeba55_bced_496b_920d_6c65a3463498">Brute</option>
+                        <option value="fa60d858_eee7_499d_8e56_6f05638b89b8">Buckeyes</option>
+                        <option value="_344dd58d_9f22_490f_b86b_08bed4290a64">Builder</option>
+                        <option value="_74620c03_369b_40f4_90d7_bd70f2c724e5">Bulltrue</option>
+                        <option value="_8901f431_a580_457c_8bcb_0c02971ae1eb">CAMS</option>
+                        <option value="e070bcc7_84a0_4eee_bc90_3462021dd0b5">Campfire</option>
+                        <option value="ff6bf79f_31df_409a_b7a2_7c450c218fe7">Candy Canes</option>
+                        <option value="e6935b0c_0086_4043_a64c_db9706b259a6">Cascade Stronghold Technologies</option>
+                        <option value="cd6f5e55_6bb5_423f_831f_08fb597578ca">Celestial</option>
+                        <option value="_91b094e0_f8da_452d_9e07_60e1bd09d208">Chamomile</option>
+                        <option value="dcc83697_d63c_48fa_90a6_f9b18154b9e5">Cherry Bomb</option>
+                        <option value="c6ebe112_cbd8_4bbe_bc0b_54a26c888f3e">Chief's Crest</option>
+                        <option value="c45daac0_10cf_4d0d_85f2_3f696820c678">Clippy</option>
+                        <option value="_2b9d6757_15e6_4d66_893c_8376e9b51df0">Clubs</option>
+                        <option value="_0f63f418_5600_4df0_a4e0_df6052a56e40">Cognate</option>
+                        <option value="_4c6b5eed_7875_414e_81fc_91a4a1f3d2b3">Compass Rose</option>
+                        <option value="bf9869a5_9c40_4f88_aefc_556379df1c61">Cone'd</option>
+                        <option value="_8514fd93_5fe7_444c_9999_baf7458dec50">Confine</option>
+                        <option value="ca779313_4ea5_4446_9732_c6bc164c8e9b">Confirmation</option>
+                        <option value="b4f28479_fb61_4abc_8de3_1dc84ec9941e">Conspiracy</option>
+                        <option value="cb0d15c9_9366_4e68_a187_c4e0b4f5474c">Counter Logic Gaming</option>
+                        <option value="c1f189de_8d71_4c9b_ac5a_42cfd999fb1d">Covenant Signet</option>
+                        <option value="_908b1898_6cea_45d8_b5ee_e08eba23a0c8">Covenant</option>
+                        <option value="c9b39297_e43f_4230_a1e7_698d096b4ae9">Cowboy Ninja</option>
+                        <option value="d85cc3ea_6f24_40ea_a764_9098475daecd">Crash</option>
+                        <option value="f81e29ae_31e9_4d29_b58c_5123bbfa4a39">Crossed Swords</option>
+                        <option value="_34b84b01_ceb7_43b6_84e6_b9e87a5fba50">Cubicle</option>
+                        <option value="d843dc5e_0458_468f_ab71_3b2f531b5293">Cup of Death</option>
+                        <option value="_24f2e4c1_725f_4296_a45f_a304717a89d9">Danger! Explosion</option>
+                        <option value="f9c6fa4c_6d15_44ce_815d_6a41e812143b">Dare</option>
+                        <option value="b887c587_7796_497c_ad45_bc5aa3e128d9">Diamonds</option>
+                        <option value="b2bee3d9_e509_4d52_84a3_f93b1cc6ca92">Distraction</option>
+                        <option value="_82f5ecc2_8105_40d9_b304_cfc082438a92">Dog Pound</option>
+                        <option value="_0bbae461_21be_423e_977f_7cbaac46eb2b">Drone</option>
+                        <option value="df72c2dd_46ad_4091_9a3f_545ba0845328">Ducat</option>
+                        <option value="fea56e89_fe99_4c0c_bbb8_ec0f7b56b3e7">Duet</option>
+                        <option value="_00069404_cfd9_4d41_bebf_4f0038c875c0">Eagle</option>
+                        <option value="_576ace82_99f7_452a_b668_c73128530be7">Eco</option>
+                        <option value="_34950436_b3a8_482b_b517_85d02d125e50">Elementary</option>
+                        <option value="ae91fa46_dbb3_4f40_b9fc_46d0b0e77ab3">Emile</option>
+                        <option value="_86872487_8420_44c4_9833_9d1843a093ee">Enlisted</option>
+                        <option value="dc6f2531_d025_4ecc_8459_bc70abf70f4f">Equilateral</option>
+                        <option value="e01308c2_9ca6_4647_8b4d_f53343b7cd48">Evil Geniuses</option>
+                        <option value="_60de68f9_deb2_41ea_9c42_aadf34f7fe65">Eye of the Beast</option>
+                        <option value="_35fe6630_3c8e_47d2_bb4a_af8a3fc12ae8">Falcon</option>
+                        <option value="ed846399_1d46_4dbd_b192_5902998a0305">February 2016 Season</option>
+                        <option value="f2fba27b_e8bf_4d8d_8983_ea566ed6f0ae">Fireborn</option>
+                        <option value="f5e39e4a_7562_4d97_981e_352b6581a8e4">Fireteam Castle</option>
+                        <option value="_4ee4cc21_7a5a_483c_a8ed_51eeea1681d6">Fireteam Crimson</option>
+                        <option value="_19bddae6_9b5e_45a8_9316_370b8fc5680f">Fireteam Majestic</option>
+                        <option value="_0b7b6f34_9ea5_4b45_a5cc_17e6f2bf355a">Fireteam Osiris</option>
+                        <option value="_464447a8_e42d_45c5_9904_1a3a5e936730">Fireworks</option>
+                        <option value="_3966b480_7241_4508_9522_64568d37f97a">Flaming Horns</option>
+                        <option value="_8dc9360f_c4a8_4f5c_a392_d30f57138a24">Flaming Ninja</option>
+                        <option value="_1e88b8d8_a0ac_4cd6_85bf_ac072d5db5c4">Flaming Skull</option>
+                        <option value="_93f7adc2_38cb_428b_8216_dd13b1646a23">Flip Mode</option>
+                        <option value="_3a811b85_5330_4f6e_9a98_ed206c8669d6">Fly Bye</option>
+                        <option value="e6bb3ca1_21ef_4544_ba85_b0b8d3232802">Forerunner Signet</option>
+                        <option value="_7bb48254_2d7c_4f48_b6b5_d674a677e9d9">Forge Monitor</option>
+                        <option value="a28fcfdb_cdde_486d_bd90_5176da6275e3">Frag</option>
+                        <option value="d436421a_b1a2_48d5_9b83_870791a33254">Frontier</option>
+                        <option value="b1717616_41b0_484f_804b_f136b03f5b96">Frozen Treat</option>
+                        <option value="_741f4249_1816_4ddc_ba4e_997fa2c71af4">Gassed</option>
+                        <option value="_43e597b0_e9d2_4876_8ddf_a35daf2bee13">Glyphs</option>
+                        <option value="_4d5a24cb_e564_4b83_9c07_c417060b2a46">Golden Arm</option>
+                        <option value="_869a15f9_0641_41b5_aabb_1c358a971242">Gouda Two_Shoes</option>
+                        <option value="ec104b6b_e2c2_4c8e_b634_ceb24bc9ea3e">Great Hunt</option>
+                        <option value="_84c4a2b4_73da_4939_94b3_85150dc3a75f">Great Wheel</option>
+                        <option value="_00f6f9be_a6fe_4f98_9794_507bbb190ce0">Greeter</option>
+                        <option value="_548cd89d_9ebc_4e4a_9b11_014a1e58e39f">Grenadier</option>
+                        <option value="_3a33fca2_0d59_4fb8_a0df_668413e146e8">Grifball</option>
+                        <option value="_52888136_af28_4583_9941_b03bd67bd703">Griffin</option>
+                        <option value="_7de70c10_2651_4655_8a4d_6031680948e4">Grizzly Tank</option>
+                        <option value="c0effbb6_bbfd_4607_8f44_fae23f8c485f">Ground Pound</option>
+                        <option value="_1d2eb98b_51d6_4620_862a_1d5e9aa5a310">Grunt</option>
+                        <option value="_13358c3a_927a_470d_9b96_043d89a2fca1">Guardian</option>
+                        <option value="c136fb86_d50c_46c3_99ab_6515617d0393">HCS Live Event</option>
+                        <option value="_94547dde_4ec9_446d_ba0d_35275af103f8">Halo Championship Series</option>
+                        <option value="_00ab4852_3bf4_43c5_8443_53df54b37e43">Halo Channel</option>
+                        <option value="_0e217b77_3ebb_4b91_86e7_3acd7e98ba1c">Halo World Championship 2016</option>
+                        <option value="_40e364ce_e6dc_42dc_a983_b45b72e4707f">Hammer</option>
+                        <option value="_8f333d11_4488_48bd_9f5d_d91b2daab87e">Hammock</option>
+                        <option value="f0d8b0c7_6ef3_4a40_833b_af59b0b8439d">Hand of the Didact</option>
+                        <option value="_5450aa44_a8ac_43a8_a41a_66ff500012d8">Hannibal Weapon Systems</option>
+                        <option value="cf62f5ca_3c93_407b_bcb5_9ad58dd088c9">Hastati</option>
+                        <option value="f718accf_4bcd_422a_bcb4_6e93f76c22b9">Headshot</option>
+                        <option value="_2f13edb0_aae4_40d9_9801_7703e4c3b5c2">Hearts</option>
+                        <option value="f73913c5_c611_4aa6_8ee1_bf455d7dd18f">Helmet</option>
+                        <option value="d5c4c611_fcb3_442e_8b0b_fec8ce6409ed">Helper Unit IV</option>
+                        <option value="_136aaaa5_7fd4_4a8e_82d8_cb390144e083">Hexa</option>
+                        <option value="e467b4af_be81_4996_b187_63167fb5e8d4">Hot Pie</option>
+                        <option value="_3652bfc2_78ef_411f_abfa_c387fea537ac">Hunter Prey</option>
+                        <option value="_0bcb1d70_809d_42f7_81b9_5707b1db110a">IX</option>
+                        <option value="_0553d18f_a235_4114_9501_227a05c1054d">Imbrium Machine Complex</option>
+                        <option value="_429e6a13_0949_4a93_be42_50125b923c7d">Imperial</option>
+                        <option value="_8abc4b0e_91fb_46a0_92f7_3db67da5890d">Implied</option>
+                        <option value="_66e91258_0661_4acc_ae44_1fa4728d2b62">Incinerate</option>
+                        <option value="ac65a61a_6d3a_410b_bdba_a4b985a30463">Infected</option>
+                        <option value="db35ce8c_d5dd_4417_9273_b848568841fd">Invex</option>
+                        <option value="_0adaa8fa_0c95_4d6b_b5ff_2c75b843195e">Iris</option>
+                        <option value="_44925533_ca24_487d_a666_86124b548dd1">Isosceles</option>
+                        <option value="_3e84f4d3_d146_4d42_b621_dadc34c0d446">J!NX</option>
+                        <option value="d9f5642c_e635_4783_b480_7ba951d721d2">J1_GL Bot</option>
+                        <option value="_86a1e8c9_cdc0_46b4_af1b_831eb9adc4bb">January 2016 Season </option>
+                        <option value="_4c76b546_be76_442d_b049_b2d5844d12a6">Jewel</option>
+                        <option value="_9cc0c137_14be_4e26_bc12_e5243d7fed41">Jolly Roger</option>
+                        <option value="ec7dde05_cd7c_45e9_b248_90f51209bb1d">Jorge</option>
+                        <option value="_8301398a_96cc_4f1a_b7b0_96a4e68ee804">June 2016 Season</option>
+                        <option value="_5c7ddc5c_d81e_488c_a1c3_d6c928227f92">Keeper of the Domain</option>
+                        <option value="e23dc8a9_d8d1_4e66_bf32_11d2d245914c">Kig_Yar</option>
+                        <option value="e3d85ff9_988b_41bf_85df_c5ff135c9282">Killer Bee</option>
+                        <option value="_5a97fa8f_91a5_4688_bb52_09c3edf1d931">Kindred</option>
+                        <option value="_0853a074_74c6_4e05_92d6_307283f21f3b">Kinetic</option>
+                        <option value="_52466a2d_d6d6_49eb_842c_fcf1726942d9">Knot</option>
+                        <option value="_14c782e5_5b6f_4437_ba83_21fd0427b7a0">Kukri</option>
+                        <option value="_1a59ccc2_9167_4a28_90e4_7067ef607449">LDC Seal</option>
+                        <option value="_1128cd30_e97f_40b4_b442_1dda156f08e3">Lemon's Head</option>
+                        <option value="_4016df0b_8ef7_403d_b34c_717bf71a7e12">Lethbridge Industrial</option>
+                        <option value="_17811f73_0e00_4d2b_a0f6_741a6cd0f90e">Liang Dortmund</option>
+                        <option value="df26b5c4_f7da_45ca_9b13_503b5fd3547f">Librarian</option>
+                        <option value="_5f9ddc29_6f3f_4984_9784_c6aa237ccc6b">Links</option>
+                        <option value="_1b5a5f5d_13a6_457b_9b89_f9dd8fd4d02f">Liquid</option>
+                        <option value="_9731ee81_fc71_46cc_9a48_4b3e3623eb50">Listener</option>
+                        <option value="_63161c0a_56f8_49c7_a083_26c11320cfdf">Loading</option>
+                        <option value="_45c5d4df_93f0_4c92_8ae6_d9b0f77a994c">Lone Wolf</option>
+                        <option value="_72d17fe7_c69e_48b8_88d5_7dd914e8fe43">Loupe</option>
+                        <option value="_8dad0c26_e7f4_44a5_b91b_7ce0c8ebf206">Luminosity</option>
+                        <option value="_51807950_fc64_4ede_af30_151b65eb6565">M6D</option>
+                        <option value="fb7b27c4_bf33_4404_a6a3_9f6eeca058c4">MS_DOS</option>
+                        <option value="_2ff4cde3_769e_42ce_afae_1f49f695a8f4">Mad Dawg</option>
+                        <option value="c3bfcd1c_92bb_4372_b350_654a07adde6b">Magnum Opus</option>
+                        <option value="f6396704_e524_49a7_a92f_60432479fcae">Mantis</option>
+                        <option value="_62e2c2bf_fa2f_425a_a205_281584c90e44">Mantle</option>
+                        <option value="d54e996b_b57b_4a7d_af59_3f8f04db3698">Marauder</option>
+                        <option value="_0922b400_3db1_476d_90f4_a7306b1ec632">March 2016 Season</option>
+                        <option value="_0b013661_1d96_4f0c_b3cf_8ec0722f4d02">Mark of the Hog</option>
+                        <option value="_27d57e32_2253_47f7_a6ab_abf65875e90c">Matrix</option>
+                        <option value="bfe1aea4_442a_4343_9655_0c43d1ce3d9a">Maw</option>
+                        <option value="ff20c70f_d150_4d89_992a_e995d805714c">May 2016 Season</option>
+                        <option value="_41a55181_e0a8_4675_acdb_3ce5e75803ee">Mega Bloks Banner</option>
+                        <option value="_86b01c60_d94e_423c_b807_3b5bfcf5e0a0">Mega Bloks X</option>
+                        <option value="_1cfdb70f_14a9_420c_bc9c_9fdd90dfe79f">Merry Berry</option>
+                        <option value="ba47b9b6_a133_416a_aaba_57605cb6b733">Meteor</option>
+                        <option value="_9e803a2e_f30d_469b_8f1d_06ae3dbdefb6">Microsoft Bob</option>
+                        <option value="_8d50a442_0972_40f8_80ff_83e385aaea60">Militia</option>
+                        <option value="_41aa2b07_f9c8_4654_a9aa_3a8b18b6c95b">Misriah Armory</option>
+                        <option value="_3db0fac2_fc13_4812_8bd4_5bb6a1bd7163">Mister Chief</option>
+                        <option value="cfe96d66_9dad_407a_9d0a_b52a63181c8d">Mixer</option>
+                        <option value="_0e2d1092_8ba1_4a6f_bf95_d429ad75af94">Mjolnir</option>
+                        <option value="f8aadb9e_ca31_4288_b905_44ef3d0d2bd4">Money 8s</option>
+                        <option value="_20641e92_0f30_4d61_8e10_54d78789a7aa">Monolith</option>
+                        <option value="c709d712_508c_4847_9427_57495c79e47e">Mushroom</option>
+                        <option value="_5f80853a_f4d7_401b_9fda_fc206d042ba4">Naded</option>
+                        <option value="_2d82cddb_3d1a_435a_8906_68194f4d8614">Nadir</option>
+                        <option value="d7998da7_7e04_47b1_98f0_2eb8d928f6eb">Navy</option>
+                        <option value="_39864b21_5d53_4bcb_ae59_028983e9a401">Network</option>
+                        <option value="d73bb4a4_2075_4467_9dda_82f4c6a72e1f">New Mombasa</option>
+                        <option value="d737adaf_33fa_4a16_89b9_b75a214542a3">Nexus</option>
+                        <option value="c6ded5d0_cf34_4a27_86e4_2d7e2b98a185">Noble</option>
+                        <option value="d4876114_c7e8_4bbf_aac2_2bd8824b5f5e">Noise</option>
+                        <option value="_423dde36_04d8_4f5d_9ee5_d3c102d115bc">Nucleus</option>
+                        <option value="_0feb27b0_2165_4ae3_86d2_0fbffbd85bc8">Number Eight</option>
+                        <option value="_34a3ab16_4bac_4607_bf50_6a3a1eded120">Number Eleven</option>
+                        <option value="c67ba260_3142_424f_897d_611098d57053">Number Five</option>
+                        <option value="bbdd60da_54b9_4820_a1c3_fb408d417e71">Number Four</option>
+                        <option value="_5e7c14b9_4cd9_434b_a598_4adec090b7cc">Number Nine</option>
+                        <option value="_5a3cdb22_a0c6_47d9_801d_edf92e718da5">Number One</option>
+                        <option value="b77ce7f7_ab4f_4155_aabb_5e7ff957bcb5">Number Seven</option>
+                        <option value="_369c61cc_925a_4c54_b77c_ad67f9257bdb">Number Six</option>
+                        <option value="_83e32870_da92_4235_9b05_4e98f452aa0a">Number Ten</option>
+                        <option value="_241a059a_9e5c_4013_a482_772785baa3ef">Number Three</option>
+                        <option value="_16c1c1ce_f395_45f5_a760_11e002206833">Number Twelve</option>
+                        <option value="_6bc6aa48_dca9_4a60_a92f_ecf4d8014ea7">Number Two</option>
+                        <option value="_95e13f2e_7495_4e93_ab98_6e2d2852bd22">Number Zero</option>
+                        <option value="b0208302_ec1c_4883_ac1d_2719de035ac5">ODST</option>
+                        <option value="_3b2d0e8b_949f_497c_bae2_58c3861dae2f">ONI</option>
+                        <option value="f01b406c_2b4a_4ba8_973c_a6f0e06c1de1">OpTic Gaming</option>
+                        <option value="fefecf69_30af_4e95_8fef_a9a77cfaeac2">Options</option>
+                        <option value="_63c67b90_e00a_43e9_b1b1_56fdd1ed7763">Orbit</option>
+                        <option value="_6684e6e2_d4a6_41fc_827d_f9999d24a39e">Panda BR</option>
+                        <option value="_59447494_f27b_4779_a919_b6ce71e8c683">Patch</option>
+                        <option value="_4c691e97_e8fd_465a_8688_faa0d94aea08">Pigs Fly</option>
+                        <option value="b23429fd_5bc8_48a3_837b_e61fb64ef1d3">Pinwheel</option>
+                        <option value="_1eba768f_2316_4f1c_9024_bd14c9fe6f88">Pioneer</option>
+                        <option value="f1f9c806_29fe_45f9_80eb_1bae2cc77962">Pirate</option>
+                        <option value="ef7752b4_4a30_434f_a38a_517585db4580">Pivot</option>
+                        <option value="feebc5ee_87a8_4dc4_96bd_72df4cd1b23d">Platform</option>
+                        <option value="_9caa8c71_a657_490b_8921_506f9a800028">Power</option>
+                        <option value="c6b53b5d_9129_48d0_ac02_d837aa743099">Prancer</option>
+                        <option value="aa183bef_b61c_4bea_9dd7_d171add0862d">Predator</option>
+                        <option value="_8e146dda_a535_4036_b741_ac8ce9e9ee8f">Prima</option>
+                        <option value="_63cb6a7a_5e51_45ff_90b6_2374ad93321a">Prime</option>
+                        <option value="_20c0eb51_6840_4097_b7e1_0a39005227c7">Principle</option>
+                        <option value="_4e821a32_3915_43ed_8539_95e9a500f50e">Pyramid</option>
+                        <option value="_9408de90_f7aa_42a0_8fef_4fdc7abf4db1">Rabbit</option>
+                        <option value="ca106ea5_de03_45a9_bfb0_1ac0b5058f36">Radioactive</option>
+                        <option value="a2d31ba0_31f1_4fb4_a058_610bbe5f8fd3">Ratio</option>
+                        <option value="eb2c53d1_dca9_4495_8e78_007126354583">Reclaimer</option>
+                        <option value="_25e003ae_09db_40e0_bb29_847af099632b">Redeem</option>
+                        <option value="_403bca78_12eb_4158_865a_33c97b244f1d">Renewing Worlds</option>
+                        <option value="_483988da_3423_4c63_bada_b6664ebafac5">Revolve</option>
+                        <option value="e4e70564_0610_4eb1_b865_7a0cb93edbf8">Rhino</option>
+                        <option value="a2645cbc_e24f_49d5_955a_07dcddbee4ec">Rooster</option>
+                        <option value="_71eda7e8_ea2d_4984_850f_5052d8360fea">Runes</option>
+                        <option value="_9c97dec5_df73_4b41_b173_bb031784edab">Salient Sword</option>
+                        <option value="d9ffa9fd_885e_450a_bddd_60960d34ab0b">Scarab</option>
+                        <option value="ae9ed49f_98b5_4627_a6d3_70138b4ca32b">Scorpion</option>
+                        <option value="_66112305_e95d_482c_a284_8fe0f5c15d37">Screw</option>
+                        <option value="d755e300_d724_4e43_b0d6_e5b5bc071023">Season 4</option>
+                        <option value="_82ab6e05_0fb6_491e_b249_a02a4a2e74e6">Season 7</option>
+                        <option value="_2c7dc314_6773_4d08_af00_00fd99676d15">Season 8</option>
+                        <option value="_143aa499_672b_4717_9c43_6bc2903a2659">Season 9</option>
+                        <option value="_5211700e_9399_4073_9481_17627a7518b7">Season 10</option>
+                        <option value="_3904a584_7a2b_4c1c_b6a2_f88dd65f4779">Season 11</option>
+                        <option value="_22b259d1_a6e3_4c16_b045_ff1a57c378c2">Season 12</option>
+                        <option value="_2179dc84_3e19_4baf_8aba_7c9c365aea06">Sentient</option>
+                        <option value="_31e1432e_9727_46d5_966b_82e54767205c">Shamrock</option>
+                        <option value="f5c25a69_6722_4290_a4b6_8d322b301e14">Signal</option>
+                        <option value="f23743a7_5f04_4029_92f6_04b6ab9fe332">Skull King</option>
+                        <option value="_69712c32_e2c5_4cfe_b074_d5c00353c08b">Skull Party</option>
+                        <option value="_8d0f5cd1_af89_4d97_8dcb_b604817669ff">Slumber</option>
+                        <option value="_34b253ae_eab9_43dc_b897_18233209edea">Snake</option>
+                        <option value="_50ed8e81_5ae2_4c57_bcb7_90e1f3b907fb">Sol</option>
+                        <option value="_3b31aedc_af90_40f2_93b6_5b0bcf00d431">Spades</option>
+                        <option value="e13142b8_d200_4fb0_89d1_fc30f2e2334d">Spartan Claus</option>
+                        <option value="_0710f012_05e6_4639_96e2_184f9729c411">Spartan Helmet</option>
+                        <option value="_8204e99c_b6cc_4f51_aaef_39b59dcc6caf">Spartan League</option>
+                        <option value="aeb973be_5404_4cdd_89a6_578ccb46d2df">Spartan Seal</option>
+                        <option value="_2c4fb656_2299_4c79_beff_e2be70746b53">Spartan Swords</option>
+                        <option value="_2d20af4b_b528_4032_8b57_6459abc31250">Spartan X</option>
+                        <option value="f4bc9479_4f84_4c84_91ef_4443a8ed1ae8">Spartan</option>
+                        <option value="_4b495851_c6d4_4aa0_b153_16ec6bc1d1cb">Spartan_IV</option>
+                        <option value="_05bf038f_7f5a_48bc_9a59_0aef719d7013">Spicy Locke</option>
+                        <option value="_23f18d30_bd8f_4b49_9d45_43ff2e2fd9a2">Splinter</option>
+                        <option value="_8cd18d6b_c0ce_463d_badf_e179c61523ef">Splyce</option>
+                        <option value="e6a84214_a1f2_4d02_bc1f_ee837534fa30">Sprinkles</option>
+                        <option value="_26ec394c_ae06_4144_ba10_86152c666460">Stachey</option>
+                        <option value="dbc1920e_ada3_4217_8f93_a74f33f5b62c">Stars and Stripes</option>
+                        <option value="e5f61c7f_bf7f_4334_84a4_bcec9cb4e0f4">Steaktacular</option>
+                        <option value="_6c726ce0_82fd_40f6_aa21_5590735b4d17">Stealth</option>
+                        <option value="_11c612af_9be3_4b53_bdbe_f416c04fab07">Str8 Rippin</option>
+                        <option value="f72628af_2200_4e47_8cfb_1d3300a9d584">Stuck</option>
+                        <option value="_6e2c7a67_8c0e_41fa_8799_e5eb3c143f51">Summit</option>
+                        <option value="_7d738b6e_58d3_47e0_9ae3_84e2d0d5bf3c">Supercombine</option>
+                        <option value="f4cb4da1_2e7c_4199_9538_ffcf06d6abde">Tag It</option>
+                        <option value="f467bfc5_af27_462c_9eda_1e4567593654">Team EnVyUs</option>
+                        <option value="_670594c3_ae7a_421f_9d69_8e8b0667a056">Teeth</option>
+                        <option value="a8d5876c_0a59_4621_921c_c4cbbcd12473">Thanks Given</option>
+                        <option value="efc25338_cbdb_44bf_b362_7addb24f1664">Three Eyes</option>
+                        <option value="_10a95d7d_3c3f_4f7f_a073_6409336f33c9">Tomcat</option>
+                        <option value="ad5cb3ea_6315_41fc_b461_c461cebc87a3">Tracker</option>
+                        <option value="cb51149f_2bac_43cb_8696_e70c467fe5e6">Traitor</option>
+                        <option value="_19f5444f_7908_4e05_a3b2_a8c7ed3ef070">Triad</option>
+                        <option value="b45684ad_55ad_4db1_b590_2ee1de220aed">Triangulate</option>
+                        <option value="d0b479a8_240b_41bd_af62_43c58a272727">Triarch</option>
+                        <option value="_722541ef_6c2f_40b7_820f_941bec018fac">Tricube</option>
+                        <option value="f8e516a2_2cf8_464b_97c9_d9665048414d">Triplicate</option>
+                        <option value="_38a04a57_d9e1_4be3_8f6f_1142158a919b">True Light</option>
+                        <option value="_863e5af3_54d7_4494_bdbc_2b82745c8112">UNSC</option>
+                        <option value="_2a58ded5_1e40_44e4_ab4c_6653a62008bb">Unggoy</option>
+                        <option value="ebe70a55_5dc6_44f5_9a9f_edfc320e3229">Unicorn</option>
+                        <option value="df2ec8e3_ca05_42fa_abda_5bbcb503f6ed">Unworthy</option>
+                        <option value="b1e6ab72_314d_4f7e_b954_d3f7dd30a9c6">Valencia</option>
+                        <option value="_84445e60_d79a_4844_8776_b7c957b9d264">Valkyrie</option>
+                        <option value="dca65f4d_eaaa_424e_afdb_2cab2a512d1e">Vanguard</option>
+                        <option value="_5b5afa70_bc57_4df2_a1e2_8def80fad8c8">Vertigo</option>
+                        <option value="_6e986a95_1c35_4b09_822a_08efebf73285">Volatile</option>
+                        <option value="_44009fff_caa4_4629_a375_753847f73455">War's Quintet</option>
+                        <option value="a26acc4e_aa31_4ee0_8be0_6c82943c861c">Warden</option>
+                        <option value="_544d2d13_b981_466e_bda1_98cbd53b9390">Warlord</option>
+                        <option value="df84161f_ddf6_4445_8e0b_0830b8a949b6">Wasp</option>
+                        <option value="_8a7f2371_b3f1_4770_b8ac_d5bd5259dda0">Watershed Division</option>
+                        <option value="_9eab10d4_5c08_4fba_978f_3bb1d8983268">Waves</option>
+                        <option value="_68522831_6499_4c74_bb1f_fad19062a503">Winged</option>
+                        <option value="fd698788_e6bc_45fb_9610_f1cfc2216ef1">Wolf</option>
+                        <option value="f190a84b_7d0b_48a1_b2f9_30234b11db57">Yin Yang</option>
+                    </select>
+                </div>
+            </div>
+            <div class="horizontal">
+                <!-- Primary Nameplate Color -->
+                <div class="settingsContainerNoWidth noAnimation">
+                    <label>Primary Nameplate Color</label>
+                    <div id="colorGrid" class="grid-container" name="primaryNameplateColor">
+                        <!-- Grid items will be added here -->
+                    </div>
+                    <div id="primaryNameplateColor" class="colorBar"></div>
+                </div>
+                <!-- Secondary Nameplate Color -->
+                <div class="settingsContainerNoWidth noAnimation">
+                    <label>Secondary Nameplate Color</label>
+                    <div id="colorGrid" class="grid-container" name="secondaryNameplateColor">
+                        <!-- Grid items will be added here -->
+                    </div>
+                    <div id="secondaryNameplateColor" class="colorBar"></div>
+                </div>
+                <!-- Tertiary Nameplate Color -->
+                <div class="settingsContainerNoWidth noAnimation">
+                    <label>Tertiary Nameplate Color</label>
+                    <div id="colorGrid" class="grid-container" name="tertiaryNameplateColor">
+                        <!-- Grid items will be added here -->
+                    </div>
+                    <div id="tertiaryNameplateColor" class="colorBar"></div>
+                </div>
+                <!-- Service Tag Name -->
+                <!-- INPUT -->
+            </div>
+        </div>
+        <div id="submenu3" class="submenu hidden">
+            <div class="horizontal">
+                <!-- AR Weapon Skin -->
+                <div class="settingsContainer vertical">
+                    <label>Assault Rifle</label>
+                    <img id="arImage" src="assets/img/_9deda07f_4352_4c46_8a94_aeafaa9f72f0.png" alt="AR Skin Image" width="200">
+                    <select id="arSelect" class="customizationSelect">
+                        <option value="_9deda07f_4352_4c46_8a94_aeafaa9f72f0">Random</option>
+                        <option value="d6bd073f_f0ec_4b91_b6b7_656607595b96">343 Industries</option>
+                        <option value="_8b2fb9ab_267e_4e32_9ab2_1ee479ab3e99">Allegiance</option>
+                        <option value="_13df39e7_51f7_447f_8708_5b4831213ea0">Aurum</option>
+                        <option value="f2221129_663a_41a3_949a_6b1b30582f4b">Azure Dream</option>
+                        <option value="d6edf7b9_c2dd_49f3_af9d_3515ecb499fa">Blue Steel</option>
+                        <option value="_8a20aa5b_dab1_4598_996c_ebb35da91b5d">Blue Team</option>
+                        <option value="c32d92b4_e1be_4dd1_8958_1501c1d2dbcf">BoomCo AR Blaster</option>
+                        <option value="b0f360f5_941b_43f2_956e_aebb49230713">Bracer</option>
+                        <option value="d1d1d929_7a32_42f6_a918_5afed91e9275">Counter Logic Gaming</option>
+                        <option value="b4c12031_58e8_484c_9efb_adbed1c84181">Ehh, Arr</option>
+                        <option value="b4d3d0ef_4d9a_4541_98c9_3ba4a7227b07">Evil Geniuses</option>
+                        <option value="_906f4cb7_1d08_4dde_93f6_10c044be7c27">Fade</option>
+                        <option value="_5e3cd02b_6634_4b8c_a9db_6ee1cba0544d">Fire Unicorn</option>
+                        <option value="_34c42e36_a05a_4ff4_8f5e_2f7bf8748e57">Fireteam Osiris</option>
+                        <option value="_9eedf3af_3ae9_44d2_b594_7c1405ea6f62">Gold Standard</option>
+                        <option value="_3fa1a9e2_0b53_4712_ab3e_e3dd4b712bb0">Green Machine</option>
+                        <option value="bbca0c99_7acc_4789_9e21_2391e04d5992">HCS Contender Blue</option>
+                        <option value="_18e3aa81_1a02_424e_97e8_6fa37a2be819">HCS Contender Red</option>
+                        <option value="_29562d20_a9fb_480e_bd9b_3c534a5f8b14">HCS Contender</option>
+                        <option value="_4dc2703f_06c1_4459_af93_4ec6affacb28">Ice Unicorn</option>
+                        <option value="cb082c4c_1160_4d81_8039_0ecaeea52e20">Lagrange</option>
+                        <option value="_48ace2d1_3ca5_4147_8419_5597903e7677">Landgrave</option>
+                        <option value="_7245c102_e00c_4680_86be_aec461818101">Last Dawn</option>
+                        <option value="_7124345f_d093_41d0_8ede_daffb2401b3c">Last Slice</option>
+                        <option value="ff9a2988_210e_46f1_b228_47cd36202bfd">Luminosity</option>
+                        <option value="f89ef322_67c8_48c7_a921_145db34f329b">Master Control</option>
+                        <option value="_265e84f7_3c1f_49f7_aa5b_9482596ce66b">Monstrous</option>
+                        <option value="ba772bed_8e67_4778_8e91_0989e2ba716d">Noble Team</option>
+                        <option value="_730a8eae_992f_4a4f_8524_2cf4ff9e7589">ODST</option>
+                        <option value="_601f45c9_b1cf_4656_b68b_27391b8f00ac">Old Abe</option>
+                        <option value="dd45ad01_5b73_4102_8d06_60c2a07822e9">OpTic Gaming</option>
+                        <option value="b2246296_cafe_4975_9ec4_647cae8218d9">Pop Culture</option>
+                        <option value="e6ae63ee_b905_4dd1_8a14_1d89f32731a6">Prestige</option>
+                        <option value="_7a6513ed_c452_4b74_873c_c50435d82dfa">Ruptive</option>
+                        <option value="f21fba17_07b8_47d4_a393_c9c7dc0aabba">Scratched</option>
+                        <option value="d77d28b6_7f2e_49b8_9085_6f1761a8c9ff">Sharktooth Grin</option>
+                        <option value="_9e01ce63_f8a1_4550_8162_e522a8ca51fa">Skulls and Roses</option>
+                        <option value="_3815bb28_58b5_419d_b181_fd4dd9c1a23a">Spiral</option>
+                        <option value="_87009bbc_20c8_41a4_8f5e_9885ce113e1f">Spirit of Fire</option>
+                        <option value="_9f3fa518_c23e_441b_8f10_c7e5b2284763">Splyce</option>
+                        <option value="_56b6ae3f_ca7a_4f93_9476_827ceacaa032">Steel</option>
+                        <option value="_13732fff_3528_453b_96c5_25e63f5ac438">Sticker Shock</option>
+                        <option value="_3d7cbd66_470f_4c88_8a1e_e1392a040ec4">Str8 Rippin</option>
+                        <option value="_442f5c53_c7c0_4e99_b32e_14d6dc950230">Team Envyus</option>
+                        <option value="_3e05b7e2_65f1_4d36_9ffc_4f1470361007">Team Liquid</option>
+                        <option value="_94525900_a890_4b06_a145_044698915d49">UNSC</option>
+                        <option value="_10665514_47b2_4029_ad8b_e4f7e253eb70">Unicorn Fist</option>
+                        <option value="b294ed71_2a37_4696_af77_2a6f165c468f">Vengance</option>
+                    </select>
+                </div>
+                <!-- Magnum Weapon Skin -->
+                <div class="settingsContainer vertical">
+                    <label>Magnum</label>
+                    <img id="magnumImage" src="assets/img/_9deda07f_4352_4c46_8a94_aeafaa9f72f0.png" alt="Magnum Skin Image" width="200">
+                    <select id="magnumSelect" class="customizationSelect">
+                        <option value="_3cc13f52_d890_4fd0_b58b_409942d8e115">Random</option>
+                        <option value="_406455f4_9f3e_4979_9feb_aef414f536c6">343 Industries</option>
+                        <option value="_5dbd4f09_b2c0_4bbb_a525_cb79f4f6c7d8">Allegiance</option>
+                        <option value="_8b736d28_98a6_4ff9_b7de_0ddbbc2acd6f">Aurum</option>
+                        <option value="_4036c86a_3ea1_46ab_873b_58b3669388e7">Azure Dream</option>
+                        <option value="_6dffe3d9_f198_49e7_abe1_4c347e52f411">Blue Steel</option>
+                        <option value="e98c5d26_07e9_4fa8_9ff5_10239413e587">Blue Team</option>
+                        <option value="aba19114_1389_4ae8_9fa4_fced637a0d98">BoomCo Magnum Blaster</option>
+                        <option value="c1637597_a855_4c2a_beb2_7c2ab7a08b2a">Bracer</option>
+                        <option value="c9fc71fe_8617_4570_a027_cc45dea91049">Chromed Targetmaster</option>
+                        <option value="_44c9dc1c_5c03_4982_9bfc_e7c0ffb4d9d1">Counter Logic Gaming</option>
+                        <option value="_3b5a0f51_9ac5_425a_82cb_6d8473c987b1">Decorated Targetmaster</option>
+                        <option value="d676d9be_120a_4e2e_8829_169cd7620dad">Evil Geniuses</option>
+                        <option value="_06f00f89_d7e3_4423_b7b7_dd8e09edba06">Fade</option>
+                        <option value="ebb900bc_7a03_4618_93b8_b4fab516eaaf">Fireteam Osiris</option>
+                        <option value="b4c648dd_02a6_4085_bab2_6b208101e41b">Full Moon</option>
+                        <option value="b4a15fb1_51fc_4c2e_900e_ff81f883dfef">Gilded Targetmaster</option>
+                        <option value="_9935f9ee_3502_427a_a39a_f1eb3c07c6cb">Gold Standard</option>
+                        <option value="fa1dc247_759a_4fd5_a997_0213684677e9">Green Machine</option>
+                        <option value="_44db323d_2924_48fe_be0f_38b552b3b06f">HCS Contender Blue</option>
+                        <option value="_0f2d20be_458e_40d6_abd8_af843ce81d49">HCS Contender Red</option>
+                        <option value="c98c6c47_e044_4afa_8496_95d4225fed78">HCS Contender</option>
+                        <option value="f9c2d6f6_8966_4e9b_a5b5_d9b82a172102">Landgrave</option>
+                        <option value="_9350fdf4_9a0b_4267_9e7d_c44fe5334d08">Last Dawn</option>
+                        <option value="_934dfb3e_4a39_4271_84fd_180589fba861">Locke and Loaded</option>
+                        <option value="_91e1f213_ce74_4d4a_9e47_65c1a1f276f6">Lord of the Fries</option>
+                        <option value="e224176c_5b17_44c1_80b7_073bc7ad0128">Luminosity</option>
+                        <option value="d15d56b0_4830_42ed_b989_00f95eb446e0">Master Control</option>
+                        <option value="_33a038ac_fc0d_484b_8a3a_2d8f17476c3c">Monstrous</option>
+                        <option value="_59785a6f_3481_4c89_9f1d_6d2264a433d4">Noble Team</option>
+                        <option value="_95380721_2c55_4a8b_8f32_f5c97e74c932">ODST</option>
+                        <option value="c37391e9_0d90_4e70_abf7_621a89f13e2f">OpTic Gaming</option>
+                        <option value="_5b5b4616_2e59_4de8_8cd2_eec8733fd313">Pop Culture</option>
+                        <option value="_73144d5f_7104_499b_a986_88e6283d658e">Prestige</option>
+                        <option value="_30565b36_5354_402c_b51b_9e934a161c63">Ruptive</option>
+                        <option value="_6d2b971b_85b2_4d8f_ad23_9d2e1f892443">Scratched</option>
+                        <option value="ca6551ab_ffbe_4ae6_9ca4_4b5afbea6e43">Sharktooth Grin</option>
+                        <option value="aa0f749a_087b_499c_a7f3_bceed3e7152c">Skulls and Roses</option>
+                        <option value="b560316d_f7d1_4be0_8d59_6cf9c3e1bdb0">Spiral</option>
+                        <option value="_02572a58_5d75_44c6_b764_a4d4d41481b4">Spirit of Fire</option>
+                        <option value="_12c32026_7c4e_4b6e_bf79_ccd925761ed7">Splyce</option>
+                        <option value="d43861e4_f231_4298_b771_8cc5e6c5d568">Sticker Shock</option>
+                        <option value="_9d4afb6d_44e4_4261_9643_6b0541b90027">Str8 Rippin</option>
+                        <option value="de319b54_613b_4e80_96fc_09e394c4fa32">Superior Targetmaster</option>
+                        <option value="c374f93e_3f18_4335_834a_8bd803e490db">Targetmaster</option>
+                        <option value="ef8d68d8_a2c5_460a_915d_e34e119daecd">Team Envyus</option>
+                        <option value="f506288b_463a_4f8d_9cbb_c80ff8340e27">Team Liquid</option>
+                        <option value="f0a0d6c4_cb32_44af_9031_4b7c960a1820">UNSC</option>
+                        <option value="c3e7bc39_76f4_4b35_bcc2_83af348fa4ae">Unicorn Fist</option>
+                    </select>
+                </div>
+                <!-- BR Weapon Skin -->
+                <div class="settingsContainer vertical">
+                    <label>Battle Rifle</label>
+                    <img id="brImage" src="assets/img/_9deda07f_4352_4c46_8a94_aeafaa9f72f0.png" alt="BR Skin Image" width="200">
+                    <select id="brSelect" class="customizationSelect">
+                        <option value="_159247e8_ee1f_4bc9_9dc1_70e516e97523">Random</option>
+                        <option value="_0203a5ad_5840_4785_848a_36df81a71e20">Aurum</option>
+                        <option value="_071e98d6_44f1_4003_84bd_1a80a3a7f0dd">Azure Dream</option>
+                        <option value="_2b42d045_8feb_4704_9778_21b86a916b96">Bloodthirst</option>
+                        <option value="_6313a6bc_7c13_4e07_ba77_ec14d189321e">Blue Steel</option>
+                        <option value="_0b0276c4_ff63_4e06_9466_12d3a7f0213a">Bracer</option>
+                        <option value="_37960d1c_695f_4917_ad9d_912f3966df46">Fade</option>
+                        <option value="d3fe282a_6634_4bbe_9a0f_186493000371">Gold Standard</option>
+                        <option value="df401a67_50f5_48fd_a444_67c795e905d3">Green Machine</option>
+                        <option value="_616391ac_29d7_4b0c_becc_d89dc46578c9">HCS Contender Blue</option>
+                        <option value="_1bfa70f6_b10e_4de8_9fe7_4fc8eec68645">HCS Contender Red</option>
+                        <option value="_6dc5454a_487c_44fb_937f_147a0505fc29">HCS Contender</option>
+                        <option value="_91bf6429_2334_4642_993d_1392af6ceaf6">Landgrave</option>
+                        <option value="b141fcff_38c3_4552_abf4_2db2d855c4ce">Last Dawn</option>
+                        <option value="_0ab7e2c7_f638_47ce_95d2_00533e31f818">Master Control</option>
+                        <option value="_97379278_ba61_49c2_afec_2aa936e51e5e">Monstrous</option>
+                        <option value="f2852676_b4c3_4e76_a305_e3b59b37f3c8">Pop Culture</option>
+                        <option value="cbe8d0de_632d_4548_92e3_81c6277544c1">Prestige</option>
+                        <option value="_114a6ec8_5e6a_47a6_93f0_947ecf3d3a94">Ruptive</option>
+                        <option value="fcb756c7_4383_4adf_a0ec_296ba129c495">Skulls and Roses</option>
+                        <option value="_9dca7c50_60e1_4311_8445_d163094db301">Spiral</option>
+                        <option value="_957f525e_2c29_4cd6_bb39_3e310f18a3c1">Sticker Shock</option>
+                        <option value="_7f99b9bd_7492_4a69_9b42_3bdec6ffd202">Unicorn Fist</option>
+                    </select>
+                </div>
+                <!-- DMR Weapon Skin -->
+                <div class="settingsContainer vertical">
+                    <label>DMR</label>
+                    <img id="dmrImage" src="assets/img/_9deda07f_4352_4c46_8a94_aeafaa9f72f0.png" alt="DMR Skin Image" width="200">
+                    <select id="dmrSelect" class="customizationSelect">
+                        <option value="_9deda07f_4352_4c46_8a94_aeafaa9f72f0">Random</option>
+                        <option value="cf787f7f_378d_4073_bda8_d7276ac26985">Aurum</option>
+                        <option value="_4823b456_ed80_4de9_971c_4523699e54b1">Azure Dream</option>
+                        <option value="f40197d3_a98a_49d2_b1be_a0a5a9a3692a">Blue Steel</option>
+                        <option value="_12bdaacd_f227_497c_ad28_b98d4d1cd6e0">Bracer</option>
+                        <option value="_8f182ed4_efe3_40ac_aa17_140721d5d2ef">Clash</option>
+                        <option value="_3c6d7385_2e30_4488_8b5b_28c382dea47b">Fade</option>
+                        <option value="a2a94750_d34f_436e_bc3d_d5ca78b4b34d">Gold Standard</option>
+                        <option value="_8493f423_582e_49f9_b5ba_b7ff77c69a4a">Green Machine</option>
+                        <option value="_127ef54c_4791_4a65_bc38_a0117fdb2dbe">Landgrave</option>
+                        <option value="_6fce5aea_61de_4db1_baa1_cd05224315d8">Last Dawn</option>
+                        <option value="_72b0d62a_1f15_4f2a_a1ac_b5844a793c55">Master Control</option>
+                        <option value="_5c44e416_8a5e_4f99_b534_fd64dfaa3dc8">Monstrous</option>
+                        <option value="d891a3a0_ca71_4760_8876_83b9ef688008">Pop Culture</option>
+                        <option value="_39c10050_c162_4a24_b7a3_0ae6b4f20072">Prestige</option>
+                        <option value="_7f1f0f13_a4f0_41cd_a47f_f0f9d4baa0bd">Ruptive</option>
+                        <option value="_448eda94_6e79_4c6c_8524_291d78d5d3b9">Skulls and Roses</option>
+                        <option value="a7d0a3d9_c19d_4e91_8232_d41c78d14895">Spiral</option>
+                        <option value="c6250e93_bf08_4bef_b8db_88502ecad4c5">Sticker Shock</option>
+                        <option value="_0580130f_be95_4d5b_8ff2_8960e033f2d8">Unicorn Fist</option>
+                    </select>
+                </div>
+                <!-- SMG Weapon Skin -->
+                <div class="settingsContainer vertical">
+                    <label>SMG</label>
+                    <img id="smgImage" src="assets/img/_9deda07f_4352_4c46_8a94_aeafaa9f72f0.png" alt="SMG Skin Image" width="200">
+                    <select id="smgSelect" class="customizationSelect">
+                        <option value="_9deda07f_4352_4c46_8a94_aeafaa9f72f0">Random</option>
+                        <option value="cf787f7f_378d_4073_bda8_d7276ac26985">Aurum</option>
+                        <option value="_4823b456_ed80_4de9_971c_4523699e54b1">Azure Dream</option>
+                        <option value="f40197d3_a98a_49d2_b1be_a0a5a9a3692a">Blue Steel</option>
+                        <option value="_12bdaacd_f227_497c_ad28_b98d4d1cd6e0">Bracer</option>
+                        <option value="_8f182ed4_efe3_40ac_aa17_140721d5d2ef">Clash</option>
+                        <option value="_3c6d7385_2e30_4488_8b5b_28c382dea47b">Fade</option>
+                        <option value="a2a94750_d34f_436e_bc3d_d5ca78b4b34d">Gold Standard</option>
+                        <option value="_8493f423_582e_49f9_b5ba_b7ff77c69a4a">Green Machine</option>
+                        <option value="_127ef54c_4791_4a65_bc38_a0117fdb2dbe">Landgrave</option>
+                        <option value="_6fce5aea_61de_4db1_baa1_cd05224315d8">Last Dawn</option>
+                        <option value="_72b0d62a_1f15_4f2a_a1ac_b5844a793c55">Master Control</option>
+                        <option value="_5c44e416_8a5e_4f99_b534_fd64dfaa3dc8">Monstrous</option>
+                        <option value="d891a3a0_ca71_4760_8876_83b9ef688008">Pop Culture</option>
+                        <option value="_39c10050_c162_4a24_b7a3_0ae6b4f20072">Prestige</option>
+                        <option value="_7f1f0f13_a4f0_41cd_a47f_f0f9d4baa0bd">Ruptive</option>
+                        <option value="_448eda94_6e79_4c6c_8524_291d78d5d3b9">Skulls and Roses</option>
+                        <option value="a7d0a3d9_c19d_4e91_8232_d41c78d14895">Spiral</option>
+                        <option value="c6250e93_bf08_4bef_b8db_88502ecad4c5">Sticker Shock</option>
+                        <option value="_0580130f_be95_4d5b_8ff2_8960e033f2d8">Unicorn Fist</option>
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <script src="scripts/renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+@font-face {
+    font-family: Avalon;
+    src: url(../fonts/Avalon.ttf);
+}
+
+@font-face {
+    font-family: Conthrax;
+    src: url(../fonts/conthrax-sb.otf);
+}
+
+
+body {
+    /* Attempted some stuff for an auntie dot background, scrapped
+    --s:67px;
+    --m:4px;
+
+    --c1: black;
+    --c2: rgba(0, 0, 255, 0.5);
+
+    --v1: var(--c1) 119.5deg, #0000 120.5deg;
+    --v2: var(--c2)  119.5deg, #0000 120.5deg;
+    background:
+    conic-gradient(at var(--m)              calc(var(--s)*0.5777), transparent 270deg, var(--c2) 0deg),
+    conic-gradient(at calc(100% - var(--m)) calc(var(--s)*0.5777), var(--c2) 90deg,  transparent 0deg),
+    conic-gradient(from -60deg at 50% calc(var(--s)*0.8662)             , var(--v1)),
+    conic-gradient(from -60deg at 50% calc(var(--s)*0.8662 + 2*var(--m)), var(--v2)),
+    conic-gradient(from 120deg at 50% calc(var(--s)*1.4435 + 3*var(--m)), var(--v1)),
+    conic-gradient(from 120deg at 50% calc(var(--s)*1.4435 +   var(--m)), var(--v2)),
+    linear-gradient(90deg, var(--c1) calc(50% - var(--m)),var(--c2) 0 calc(50% + var(--m)), var(--c1) 0);
+    background-size: calc(var(--s) + 2*var(--m)) calc(var(--s)*1.732 + 3*var(--m));
+    */
+    background-color: grey;
+    color: white;
+}
+
+label {
+    font-family: Conthrax;
+    font-size: small;
+}
+
+.menuButton, .submenuButton {
+    background-color: transparent;
+    border: none;
+    color: grey;
+    padding: 5px 10px;
+    font-family: Conthrax;
+    font-size: medium;
+}
+
+.standout {
+    color: white;
+}
+
+#kalmiyaTitle {
+    font-size: 15vh;
+    font-family: Avalon;
+    color: darkgrey;
+    height: 15vh;
+    padding-left: 15px;
+}
+
+#menuBar {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    margin-bottom: 15px;
+    background-image: linear-gradient(to right, darkgrey, transparent);
+}
+
+.settingsContainer {
+    background-color: rgba(169, 169, 169, 0.5);
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 500px;
+    opacity: 0.7;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.settingsContainer:hover {
+    opacity: 1;
+    transform: translate(15px,0);
+}
+
+.settingsContainerNoWidth {
+    background-color: rgba(169, 169, 169, 0.5);
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+    opacity: 0.7;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.settingsContainerNoWidth:hover {
+    opacity: 1;
+    transform: translate(15px,0);
+}
+
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 15px;
+    border-radius: 5px;  
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+  
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 15px;
+    border-radius: 5px;  
+    background: grey; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 15px;
+    border-radius: 5px;  
+    background: grey; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+select {
+    appearance: none;
+    /* safari */
+    -webkit-appearance: none;
+    /* other styles for aesthetics */
+    width: 125px;
+    padding: 5px;
+    background-color: gray;
+    border: 1px solid darkgrey;
+    border-radius: 0.25rem;
+    color: white;
+    cursor: pointer;
+}
+
+.vertical {
+    text-align: center; /* Center-aligning the content */
+    width: 250px;
+    margin: 5px;
+}
+
+.vertical img {
+    display: block; /* Ensures the image is a block-level element */
+    margin: 0 auto; /* Center-align the image if container has a width */
+}
+
+.vertical select {
+    display: block; /* Ensures the select is a block-level element */
+    margin: 10px auto; /* Center-align the select, with some margin at the top */
+}
+
+.vertical.settingsContainer {
+    -webkit-transition: opacity .2s ease-in-out;
+    transition: opacity .2s ease-in-out;
+}
+
+.vertical.settingsContainer:hover {
+    opacity: 1;
+    transform: translate(0,0);
+}
+
+.noAnimation {
+    text-align: center;
+    margin: 5px;
+    -webkit-transition: opacity .2s ease-in-out;
+    transition: opacity .2s ease-in-out;
+}
+
+.noAnimation:hover {
+    opacity: 1;
+    transform: translate(0,0);
+}
+
+.horizontal {
+    display: flex; /* This enables flexbox layout */
+    justify-content: center; /* This centers the items horizontally */
+    align-items: center; /* This centers the items vertically (optional) */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* 12 columns */
+    gap: 5px; /* Space between boxes */
+    margin-top: 10px; /* Space below the dropdown */
+    width: 300px;
+}
+
+#colorGrid {
+    background-color: gray;
+}
+
+.color-box {
+    width: 20px; /* Width of each color box */
+    height: 20px; /* Height of each color box */
+    border: 1px solid white; /* Border for color box */
+    border-radius: 5px;
+}
+
+.colorBar {
+    height: 15px;
+    background-color: rgb(225, 205, 246);
+    margin: 5px;
+    margin-top: 10px;
+    border: 1px solid white; /* Border for color box */
+    border-radius: 5px;
+}
+
+
+/* List of all colors useable in Halo 5 customization */
+.color-0 { background-color: rgb(225, 205, 246); }
+.color-1 { background-color: rgb(255, 186, 213); }
+.color-2 { background-color: rgb(255, 140, 140); }
+.color-3 { background-color: rgb(249, 163, 122); }
+.color-4 { background-color: rgb(252, 203, 119); }
+.color-5 { background-color: rgb(255, 255, 199); }
+.color-6 { background-color: rgb(221, 241, 164); }
+.color-7 { background-color: rgb(185, 249, 180); }
+.color-8 { background-color: rgb(171, 248, 252); }
+.color-9 { background-color: rgb(176, 192, 228); }
+.color-10 { background-color: rgb(209, 208, 193); }
+.color-11 { background-color: rgb(199, 199, 199); }
+.color-12 { background-color: rgb(208, 169, 246); }
+.color-13 { background-color: rgb(255, 126, 185); }
+.color-14 { background-color: rgb(243, 93, 93); }
+.color-15 { background-color: rgb(247, 131, 53); }
+.color-16 { background-color: rgb(247, 189, 68); }
+.color-17 { background-color: rgb(247, 247, 154); }
+.color-18 { background-color: rgb(172, 188, 106); }
+.color-19 { background-color: rgb(130, 236, 122); }
+.color-20 { background-color: rgb(128, 205, 230); }
+.color-21 { background-color: rgb(132, 147, 200); }
+.color-22 { background-color: rgb(199, 197, 171); }
+.color-23 { background-color: rgb(188, 188, 188); }
+.color-24 { background-color: rgb(199, 0, 226); }
+.color-25 { background-color: rgb(255, 0, 160); }
+.color-26 { background-color: rgb(234, 0, 0); }
+.color-27 { background-color: rgb(232, 102, 0); }
+.color-28 { background-color: rgb(234, 174, 20); }
+.color-29 { background-color: rgb(234, 234, 77); }
+.color-30 { background-color: rgb(143, 158, 77); }
+.color-31 { background-color: rgb(64, 201, 55); }
+.color-32 { background-color: rgb(87, 163, 209); }
+.color-33 { background-color: rgb(89, 102, 172); }
+.color-34 { background-color: rgb(179, 173, 137); }
+.color-35 { background-color: rgb(148, 148, 148); }
+.color-36 { background-color: rgb(170, 0, 193); }
+.color-37 { background-color: rgb(206, 0, 129); }
+.color-38 { background-color: rgb(181, 0, 0); }
+.color-39 { background-color: rgb(177, 78, 0); }
+.color-40 { background-color: rgb(178, 126, 16); }
+.color-41 { background-color: rgb(191, 191, 0); }
+.color-42 { background-color: rgb(122, 137, 50); }
+.color-43 { background-color: rgb(24, 162, 11); }
+.color-44 { background-color: rgb(47, 121, 188); }
+.color-45 { background-color: rgb(48, 60, 143); }
+.color-46 { background-color: rgb(147, 133, 84); }
+.color-47 { background-color: rgb(123, 123, 123); }
+.color-48 { background-color: rgb(136, 0, 154); }
+.color-49 { background-color: rgb(167, 0, 105); }
+.color-50 { background-color: rgb(139, 0, 0); }
+.color-51 { background-color: rgb(139, 57, 0); }
+.color-52 { background-color: rgb(137, 100, 44); }
+.color-53 { background-color: rgb(145, 141, 9); }
+.color-54 { background-color: rgb(104, 116, 52); }
+.color-55 { background-color: rgb(17, 115, 0); }
+.color-56 { background-color: rgb(0, 81, 167); }
+.color-57 { background-color: rgb(0, 20, 115); }
+.color-58 { background-color: rgb(109, 90, 48); }
+.color-59 { background-color: rgb(54, 54, 54); }
+
+
+/* Keep at bottom for this to apply over everything else */
+.hidden {
+    display: none;
+}

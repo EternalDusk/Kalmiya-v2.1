@@ -1,0 +1,16 @@
+{
+  "name": "kalmiya-v2.1",
+  "version": "2.1.0",
+  "description": "Halo 5 Forge memory editor",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^27.0.4",
+    "memoryjs": "^3.5.1"
+  }
+}
